@@ -133,9 +133,11 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
   background:var(--line);border:1px solid var(--line);margin-top:56px;max-width:820px;}
 .hi-scores>div{background:var(--panel);padding:16px 18px;}
 .hs-num{font-family:var(--f-disp);font-weight:700;font-size:1.7rem;color:var(--accent);
-  transition:color .5s;font-variant-numeric:tabular-nums;}
-.hs-num.animating{animation:numGlow 6s ease-in-out;background:linear-gradient(90deg,transparent,rgba(224,168,46,0.1),transparent);background-size:200% 100%;background-position:0% center;}
-.reel .cell .v.animating{animation:numGlow 6s ease-in-out;background:linear-gradient(90deg,transparent,rgba(224,168,46,0.15),transparent);background-size:200% 100%;background-position:0% center;}
+  transition:color .5s;font-variant-numeric:tabular-nums;
+  animation:numGlow 6s ease-in-out;animation-play-state:paused;background:linear-gradient(90deg,transparent,rgba(224,168,46,0.1),transparent);background-size:200% 100%;background-position:0% center;}
+.hs-num.animating{animation-play-state:running;}
+.reel .cell .v{animation:numGlow 6s ease-in-out;animation-play-state:paused;background:linear-gradient(90deg,transparent,rgba(224,168,46,0.15),transparent);background-size:200% 100%;background-position:0% center;}
+.reel .cell .v.animating{animation-play-state:running;}
 .hs-lbl{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
   color:var(--grey);margin-top:4px;}
 
@@ -401,8 +403,9 @@ footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--f-mono)
   background:var(--line);border:1px solid var(--line);margin-bottom:38px;}
 .dv-stats div{background:var(--panel);padding:14px 16px;}
 .dv-stats .v{font-family:var(--f-disp);font-weight:700;font-size:1.4rem;color:var(--dvc,var(--gold));
-  padding:2px 6px;border-radius:3px;}
-.dv-stats .v.animating{animation:numGlow 6s ease-in-out;background:linear-gradient(90deg,transparent,rgba(237,234,227,0.08),transparent);background-size:200% 100%;background-position:0% center;}
+  padding:2px 6px;border-radius:3px;
+  animation:numGlow 6s ease-in-out;animation-play-state:paused;background:linear-gradient(90deg,transparent,rgba(237,234,227,0.08),transparent);background-size:200% 100%;background-position:0% center;}
+.dv-stats .v.animating{animation-play-state:running;}
 .dv-stats .l{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-top:3px;}
 .dv-wrap h3{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
   color:var(--grey);font-weight:400;margin:30px 0 12px;}
@@ -983,13 +986,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   /* ---------- scroll-triggered number animations ---------- */
   var numObs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.classList.add('animating');
-        e.target.style.animationPlayState='running';
-      }else{
-        e.target.style.animationPlayState='paused';
-        e.target.classList.remove('animating');
-      }
+      e.target.classList.toggle('animating', e.isIntersecting);
     });
   },{threshold:.25});
   document.querySelectorAll('.hs-num,.reel .cell .v,.dv-stats .v').forEach(function(el){numObs.observe(el);});
