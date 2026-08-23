@@ -57,6 +57,13 @@ img{max-width:100%;}
 #tint{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(120% 100% at 30% 0%,var(--zone-tint),transparent 62%);
   transition:background 1.2s ease;}
+
+/* zone background visuals */
+.zone::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
+  opacity:.04;background-size:cover;background-position:center;}
+#arrise::before{background-image:linear-gradient(135deg,#E0A82E 0%,#2A1B3D 100%);}
+#g2w::before{background-image:repeating-linear-gradient(90deg,#FF3E8A 0px,#1A0714 2px,#FF3E8A 4px);}
+#ubi::before{background-image:repeating-linear-gradient(45deg,#6FD3E8 0px,#07131A 2px,#6FD3E8 4px);}
 /* faint static grain */
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");}
@@ -365,6 +372,27 @@ footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--f-mono)
   color:var(--dvc,var(--gold));text-decoration:none;display:inline-block;margin-top:26px;}
 .dv-link:hover{text-decoration:underline;}
 
+/* ---------- AI Projects section ---------- */
+#projects{padding:11vh 0;position:relative;--zcolor:var(--gold);}
+.proj-intro{margin-bottom:48px;}
+.proj-intro h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:700;letter-spacing:-.015em;margin-bottom:10px;}
+.proj-intro p{max-width:64ch;color:var(--soft);font-size:.98rem;margin-top:14px;}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);}
+.pcard{background:var(--panel);padding:26px 22px;text-decoration:none;color:inherit;
+  position:relative;transition:background .25s;display:flex;flex-direction:column;min-height:200px;}
+.pcard:hover{background:var(--panel-2);}
+.pcard .pc-tag{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:12px;display:block;}
+.pcard h3{font-size:1.1rem;font-weight:700;letter-spacing:-.01em;margin-bottom:8px;}
+.pcard p{font-size:.82rem;color:var(--grey);line-height:1.7;flex:1;}
+.pcard .pc-meta{font-family:var(--f-mono);font-size:.58rem;color:var(--grey);letter-spacing:.08em;
+  margin-top:16px;text-transform:uppercase;display:flex;gap:12px;flex-wrap:wrap;}
+.pcard .pc-link{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-mono);
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
+  text-decoration:none;margin-top:16px;transition:gap .2s;position:relative;z-index:2;}
+.pcard:hover .pc-link{gap:10px;}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
     transition-duration:.001ms !important;scroll-behavior:auto !important;}
@@ -412,6 +440,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
     <a href="#g2w">Games2win</a>
     <a href="#ubi">Ubisoft</a>
     <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
@@ -431,7 +460,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   <a class="press" href="#arrise"><span class="cue">▼</span> Press scroll to start</a>
 
   <div class="hi-scores" aria-label="Career high scores">
-    <div><div class="hs-num" data-count="5.2" data-dec="1">0</div><div class="hs-lbl">Years in games</div></div>
+    <div><div class="hs-num" data-start-date="2021-06-01" data-dec="1">0</div><div class="hs-lbl">Years in games</div></div>
     <div><div class="hs-num" data-count="500" data-suffix="+">0</div><div class="hs-lbl">Titles shipped</div></div>
     <div><div class="hs-num" data-count="95" data-suffix="%">0</div><div class="hs-lbl">On-time delivery</div></div>
     <div><div class="hs-num" data-count="3">0</div><div class="hs-lbl">Gaming verticals</div></div>
@@ -724,6 +753,64 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   </div>
 </section>
 
+<!-- ================= AI PROJECTS ================= -->
+<section id="projects">
+  <div class="proj-intro rv">
+    <h2>Built with <span style="color:var(--gold)">Claude</span></h2>
+    <p>Tools, agents and systems built using Claude Code and Claude API. Shipping solo, learning in public.</p>
+  </div>
+
+  <div class="proj-grid">
+    <a href="https://github.com/neerajdotcom/job-search-agent" target="_blank" rel="noopener" class="pcard rv d1">
+      <span class="pc-tag">AI Agent</span>
+      <h3>Job Search Agent</h3>
+      <p>Personal autonomous agent that monitors job markets, filters listings by role and company fit, and delivers a daily digest. Built with Claude Opus, structured outputs, and persistent state management.</p>
+      <div class="pc-meta">
+        <span>Claude API</span>
+        <span>Python</span>
+        <span>Private</span>
+      </div>
+      <span class="pc-link">View repo ↗</span>
+    </a>
+
+    <a href="https://github.com/neerajdotcom/ai-job-search4all" target="_blank" rel="noopener" class="pcard rv d2">
+      <span class="pc-tag">Public Tool</span>
+      <h3>Job Search 4 All</h3>
+      <p>Public version of the job search agent — an open-source tool that helps job seekers get daily aggregated job listings with intelligent filtering. Built for scale and community contribution.</p>
+      <div class="pc-meta">
+        <span>Claude API</span>
+        <span>Python</span>
+        <span>Open source</span>
+      </div>
+      <span class="pc-link">View repo ↗</span>
+    </a>
+
+    <a href="https://github.com/neerajdotcom/ticketwriter.io" target="_blank" rel="noopener" class="pcard rv d3">
+      <span class="pc-tag">Utility</span>
+      <h3>TicketWriter</h3>
+      <p>A structured ticket writer that uses Claude to turn unstructured feedback, bug reports, and requirements into standardized, actionable tickets. Saves teams hours on ticket hygiene.</p>
+      <div class="pc-meta">
+        <span>Claude API</span>
+        <span>Web app</span>
+        <span>Public</span>
+      </div>
+      <span class="pc-link">View site ↗</span>
+    </a>
+
+    <a href="https://github.com/neerajdotcom/neerajdotcom.github.io" target="_blank" rel="noopener" class="pcard rv d4">
+      <span class="pc-tag">Portfolio</span>
+      <h3>The Morph Run</h3>
+      <p>This portfolio itself — a single-file, no-framework HTML page that tells my career as one continuous run across three game-industry zones. Built to ship in one pass.</p>
+      <div class="pc-meta">
+        <span>Vanilla HTML/CSS</span>
+        <span>GitHub Pages</span>
+        <span>Public</span>
+      </div>
+      <span class="pc-link">View repo ↗</span>
+    </a>
+  </div>
+</section>
+
 <!-- ================= ABOUT ================= -->
 <section id="about">
   <div class="zone-head rv">
@@ -801,6 +888,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
         {id:'g2w',    form:'cursor',label:'zone 02',     color:'#FF3E8A', tint:'rgba(255,62,138,0.06)'},
         {id:'ubi',    form:'eagle', label:'zone 03',     color:'#6FD3E8', tint:'rgba(111,211,232,0.06)'},
         {id:'skills', form:'eagle', label:'loadout',     color:'#6FD3E8', tint:'rgba(111,211,232,0.045)'},
+        {id:'projects',form:'mono', label:'tools',       color:'#E0A82E', tint:'rgba(224,168,46,0.05)'},
         {id:'about',  form:'mono',  label:'profile',     color:'#EDEAE3', tint:'rgba(237,234,227,0.03)'},
         {id:'contact',form:'mono',  label:'landed',      color:'#E0A82E', tint:'rgba(224,168,46,0.06)'}
       ],
@@ -859,8 +947,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
   /* ---------- hero counters ---------- */
   function runCounters(){
     document.querySelectorAll('.hs-num').forEach(function(el){
-      var target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||'0',10),
+      var target,dec=parseInt(el.dataset.dec||'0',10),
           suf=el.dataset.suffix||'',t0=null,dur=reduce?1:1400;
+      if(el.dataset.startDate){
+        var start=new Date(el.dataset.startDate),now=new Date();
+        target=(now-start)/(365.25*24*60*60*1000);
+      }else{
+        target=parseFloat(el.dataset.count);
+      }
       function step(t){
         if(!t0)t0=t;
         var k=Math.min(1,(t-t0)/dur);k=1-Math.pow(1-k,3);
