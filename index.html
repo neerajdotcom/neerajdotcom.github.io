@@ -53,18 +53,12 @@ a{color:var(--accent);}
 img{max-width:100%;}
 ::selection{background:var(--accent);color:var(--ink);}
 
-/* zone tint layer — crossfades as the run changes industries */
+/* zone tint layer — soft crossfade between industries */
 #tint{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:radial-gradient(120% 100% at 30% 0%,var(--zone-tint),transparent 62%);
+  background:radial-gradient(140% 120% at 25% 0%,var(--zone-tint),transparent 75%);
+  filter:blur(3px);
   transition:background 1.2s ease;}
 
-/* zone background visuals — gradient fade, no hard edges */
-.zone::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;
-  opacity:0;transition:opacity .8s ease;}
-#arrise::before{background:radial-gradient(ellipse at 20% 50%,rgba(224,168,46,0.08),transparent 60%);}
-#g2w::before{background:radial-gradient(ellipse at 30% 40%,rgba(255,62,138,0.08),transparent 55%);}
-#ubi::before{background:radial-gradient(ellipse at 40% 60%,rgba(111,211,232,0.08),transparent 50%);}
-.zone:target::before{opacity:1;}
 /* faint static grain */
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");}
