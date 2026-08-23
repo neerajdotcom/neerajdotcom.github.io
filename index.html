@@ -3,774 +3,948 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Neeraj Banerjee | Production · Project · Program Management</title>
+<title>Neeraj Banerjee — The Morph Run</title>
+<meta name="description" content="Production · Project · Program Management. 5+ years shipping games across iGaming, mobile and AAA — told as one continuous run.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
-:root {
-  --ink: #09090e;
-  --paper: #f0ede6;
-  --amber: #e8a020;
-  --amber-dim: #b87c10;
-  --teal: #1a7a6e;
-  --mid: #7a7367;
-  --mist: #ccc8be;
-  --border: rgba(232,160,32,0.15);
+/* ============================================================
+   THE MORPH RUN — one guide object, three studio lives.
+   Zone 1  ARRISE      gold reel      (present)
+   Zone 2  Games2win   magenta cursor (mobile)
+   Zone 3  Ubisoft     cyan eagle     (origin)
+   Single committed dark world; every colour painted explicitly.
+   ============================================================ */
+:root{
+  --ink:#0B0C10;
+  --panel:#14161E;
+  --panel-2:#1B1E28;
+  --paper:#EDEAE3;
+  --soft:#CFCBC2;
+  --grey:#8A8578;
+  --grey-dim:#55534E;
+  --line:rgba(237,234,227,0.10);
+  --gold:#E0A82E;
+  --gold-deep:#2A1B3D;
+  --magenta:#FF3E8A;
+  --magenta-deep:#1A0714;
+  --cyan:#6FD3E8;
+  --cyan-deep:#07131A;
+  --accent:var(--gold);
+  --zone-tint:rgba(224,168,46,0.05);
+  --f-disp:'Chakra Petch','Segoe UI',sans-serif;
+  --f-body:'IBM Plex Sans','Helvetica Neue',sans-serif;
+  --f-mono:'IBM Plex Mono','SFMono-Regular',monospace;
+  --rail:76px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--ink);color:var(--paper);font-family:'DM Mono',monospace;font-size:14px;line-height:1.7;overflow-x:hidden;}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--f-body);
+  font-size:16px;line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--f-disp);line-height:1.1;text-wrap:balance;}
+a{color:var(--accent);}
+img{max-width:100%;}
+::selection{background:var(--accent);color:var(--ink);}
 
-body::before{content:'';position:fixed;inset:0;z-index:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;opacity:0.35;}
+/* zone tint layer — crossfades as the run changes industries */
+#tint{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(120% 100% at 30% 0%,var(--zone-tint),transparent 62%);
+  transition:background 1.2s ease;}
+/* faint static grain */
+body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");}
 
-.z{position:relative;z-index:1;}
-.container{max-width:1080px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(14px);background:rgba(9,9,14,0.85);border-bottom:1px solid var(--border);}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:0.1em;color:var(--amber);text-decoration:none;}
-.nav-links{display:flex;gap:2.2rem;list-style:none;}
-.nav-links a{color:var(--mist);text-decoration:none;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.2s;}
-.nav-links a:hover{color:var(--amber);}
-
-/* HERO */
-#hero{min-height:100vh;display:grid;grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:center;padding:8rem 2rem 4rem;max-width:1080px;margin:0 auto;position:relative;z-index:1;}
-.eyebrow{font-size:0.7rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--amber);margin-bottom:1.6rem;display:flex;align-items:center;gap:0.8rem;}
-.eyebrow::before{content:'';width:2rem;height:1px;background:var(--amber);}
-.hero-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(3.2rem,6vw,5.8rem);line-height:0.92;letter-spacing:-0.025em;margin-bottom:0.3rem;}
-.hero-name .a{color:var(--amber);}
-.hero-title{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(1.1rem,2vw,1.55rem);color:var(--mid);margin-bottom:2rem;}
-.hero-desc{font-size:0.86rem;color:var(--mist);max-width:46ch;line-height:1.9;margin-bottom:2.5rem;}
-.cta-row{display:flex;gap:1rem;flex-wrap:wrap;}
-.btn{padding:0.75rem 1.8rem;font-family:'DM Mono',monospace;font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:all 0.22s;display:inline-block;}
-.btn-primary{background:var(--amber);color:var(--ink);}
-.btn-primary:hover{background:#f5b535;transform:translateY(-2px);}
-.btn-ghost{background:transparent;color:var(--paper);border:1px solid rgba(240,237,230,0.22);}
-.btn-ghost:hover{border-color:var(--amber);color:var(--amber);}
-
-.stat-grid{display:flex;flex-direction:column;gap:1rem;}
-.stat-card{background:rgba(255,255,255,0.025);border:1px solid var(--border);padding:1.4rem 1.8rem;position:relative;overflow:hidden;transition:border-color 0.3s,transform 0.3s;}
-.stat-card:hover{border-color:rgba(232,160,32,0.5);transform:translateX(6px);}
-.stat-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amber);}
-.stat-num{font-family:'Syne',sans-serif;font-size:2.1rem;font-weight:800;color:var(--amber);line-height:1;}
-.stat-lbl{font-size:0.72rem;color:var(--mid);letter-spacing:0.1em;margin-top:0.3rem;}
-
-/* MARQUEE */
-.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0.75rem 0;background:rgba(232,160,32,0.025);position:relative;z-index:1;}
-.marquee-track{display:flex;gap:3rem;width:max-content;animation:marquee 22s linear infinite;}
-.marquee-item{white-space:nowrap;font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--mid);}
-.marquee-item span{color:var(--amber);margin-right:0.8rem;}
-@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-
-/* SECTIONS */
-section{padding:6rem 0;position:relative;z-index:1;}
-.sec-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:3.5rem;}
-.sec-tag{font-size:0.68rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--amber);white-space:nowrap;}
-.sec-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);line-height:1;letter-spacing:-0.02em;}
-.sec-line{flex:1;height:1px;background:rgba(232,160,32,0.15);}
-
-/* EXPERIENCE */
-#experience{background:rgba(232,160,32,0.025);}
-.exp-item{display:grid;grid-template-columns:210px 1fr;gap:2.5rem;padding:2.8rem 0;border-bottom:1px solid rgba(240,237,230,0.07);transition:background 0.2s;}
-.exp-item:hover{background:rgba(232,160,32,0.02);}
-.exp-item:last-child{border-bottom:none;}
-.exp-period{font-size:0.7rem;color:var(--amber);letter-spacing:0.1em;margin-bottom:0.5rem;}
-.exp-company{font-family:'Syne',sans-serif;font-weight:700;font-size:0.92rem;color:var(--mist);line-height:1.3;}
-.exp-sub{font-size:0.68rem;color:var(--mid);margin-top:0.3rem;letter-spacing:0.08em;}
-.exp-role{font-family:'Syne',sans-serif;font-weight:700;font-size:1.18rem;margin-bottom:0.9rem;letter-spacing:-0.01em;}
-.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.3rem;}
-.exp-bullets li{font-size:0.82rem;color:var(--mist);line-height:1.75;padding-left:1.2rem;position:relative;}
-.exp-bullets li::before{content:'▸';position:absolute;left:0;color:var(--amber);font-size:0.65rem;top:0.2rem;}
-.tags{display:flex;flex-wrap:wrap;gap:0.45rem;margin-top:0.8rem;}
-.tag{padding:0.22rem 0.7rem;font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(232,160,32,0.22);color:var(--mist);background:rgba(232,160,32,0.05);}
-.tag.g{border-color:rgba(26,122,110,0.35);background:rgba(26,122,110,0.07);}
-.tag.r{border-color:rgba(180,60,30,0.35);background:rgba(180,60,30,0.07);}
-
-/* PROJECTS */
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:rgba(232,160,32,0.08);}
-.proj-card{background:var(--ink);padding:2.4rem 2rem;position:relative;overflow:hidden;transition:background 0.25s;text-decoration:none;color:inherit;display:block;cursor:pointer;}
-.proj-card:hover{background:#0e0e18;}
-.proj-card:hover .proj-arrow{opacity:1;transform:translate(0,0);}
-.proj-card.wide{grid-column:span 2;}
-.proj-num{font-family:'Syne',sans-serif;font-size:3.8rem;font-weight:800;color:rgba(232,160,32,0.07);line-height:1;margin-bottom:1rem;user-select:none;}
-.proj-badge{font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--amber);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.4rem;}
-.proj-badge::before{content:'▸';}
-.proj-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.12rem;line-height:1.2;margin-bottom:0.9rem;letter-spacing:-0.01em;}
-.proj-desc{font-size:0.79rem;color:var(--mid);line-height:1.85;margin-bottom:1.5rem;}
-.proj-metrics{display:flex;gap:1.5rem;flex-wrap:wrap;border-top:1px solid rgba(240,237,230,0.07);padding-top:1.1rem;}
-.m-val{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--amber);}
-.m-lbl{font-size:0.63rem;color:var(--mid);letter-spacing:0.08em;}
-.proj-arrow{position:absolute;top:1.4rem;right:1.4rem;font-size:1rem;color:var(--amber);opacity:0;transform:translate(-4px,4px);transition:all 0.22s;}
-
-/* SKILLS */
-#skills{background:rgba(26,122,110,0.03);}
-.skills-layout{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;}
-.skill-cat-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--amber);margin-bottom:1.4rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(232,160,32,0.18);}
-.skill-list{list-style:none;display:flex;flex-direction:column;gap:0.9rem;margin-bottom:2.5rem;}
-.skill-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:0.8rem;font-size:0.8rem;color:var(--mist);}
-.skill-lvl{font-size:0.65rem;color:var(--mid);letter-spacing:0.1em;}
-.bar-bg{height:2px;background:rgba(240,237,230,0.07);grid-column:1/-1;position:relative;overflow:hidden;}
-.bar-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--amber),var(--amber-dim));animation:fillBar 1.1s ease-out forwards;width:0;animation-play-state:paused;}
-@keyframes fillBar{to{width:var(--pct);}}
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:0.8rem;}
-.chip{padding:0.65rem 0.9rem;border:1px solid rgba(240,237,230,0.1);font-size:0.72rem;letter-spacing:0.06em;color:var(--mist);background:rgba(255,255,255,0.02);text-align:center;transition:all 0.2s;}
-.chip:hover{border-color:var(--amber);color:var(--amber);background:rgba(232,160,32,0.05);}
-
-/* ABOUT */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
-.about-text p{font-size:0.86rem;color:var(--mist);line-height:1.95;margin-bottom:1.2rem;}
-.about-text strong{color:var(--amber);font-weight:400;}
-.sb-block{margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(240,237,230,0.07);}
-.sb-block:last-child{border:none;margin-bottom:0;}
-.sb-label{font-size:0.66rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--amber);margin-bottom:0.9rem;}
-.sb-items{display:flex;flex-wrap:wrap;gap:0.45rem;}
-.sb-item{padding:0.28rem 0.85rem;font-size:0.73rem;border:1px solid rgba(240,237,230,0.13);color:var(--mist);}
-
-/* CONTACT */
-#contact{text-align:center;padding:7rem 2rem;background:linear-gradient(180deg,transparent,rgba(232,160,32,0.04));position:relative;z-index:1;}
-.contact-hl{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.4rem,5vw,5rem);line-height:0.92;letter-spacing:-0.03em;margin-bottom:1rem;}
-.contact-hl .it{font-family:'Instrument Serif',serif;font-weight:400;font-style:italic;color:var(--amber);}
-.contact-sub{font-size:0.82rem;color:var(--mid);margin-bottom:3rem;letter-spacing:0.06em;}
-.contact-links{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;}
-.c-link{display:flex;align-items:center;gap:0.6rem;padding:0.85rem 1.8rem;font-size:0.76rem;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;color:var(--paper);border:1px solid rgba(240,237,230,0.15);transition:all 0.2s;}
-.c-link:hover{border-color:var(--amber);color:var(--amber);}
-
-footer{border-top:1px solid rgba(240,237,230,0.06);padding:1.8rem;text-align:center;font-size:0.7rem;color:var(--mid);position:relative;z-index:1;letter-spacing:0.1em;}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(26px);transition:opacity 0.7s ease,transform 0.7s ease;}
-.reveal.visible{opacity:1;transform:translateY(0);}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  #hero{grid-template-columns:1fr;gap:2.5rem;padding-top:7rem;}
-  .stat-grid{display:grid;grid-template-columns:1fr 1fr;}
-  .exp-item{grid-template-columns:1fr;gap:0.6rem;}
-  .proj-grid{grid-template-columns:1fr;}
-  .proj-card.wide{grid-column:span 1;}
-  .skills-layout{grid-template-columns:1fr;}
-  .about-grid{grid-template-columns:1fr;gap:2.5rem;}
-  nav .nav-links{display:none;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 30px 0 calc(var(--rail) + 34px);position:relative;z-index:2;}
+@media(max-width:760px){
+  :root{--rail:40px;}
+  .wrap{padding:0 16px 0 calc(var(--rail) + 14px);}
 }
 
+/* ---------------- RAIL + GUIDE ---------------- */
+#rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);z-index:60;
+  background:linear-gradient(180deg,rgba(20,22,30,.92),rgba(11,12,16,.92));
+  border-right:1px solid var(--line);backdrop-filter:blur(6px);}
+#rail .track{position:absolute;left:50%;top:0;bottom:0;width:1px;
+  background:repeating-linear-gradient(180deg,var(--line) 0 6px,transparent 6px 14px);}
+#railFill{position:absolute;left:50%;top:0;width:2px;margin-left:-1px;height:0;
+  background:linear-gradient(180deg,var(--gold),var(--magenta),var(--cyan));}
+#guide{position:absolute;left:50%;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;
+  transition:transform .16s ease-out;will-change:transform;}
+#guide svg{width:100%;height:100%;overflow:visible;display:block;
+  filter:drop-shadow(0 0 8px rgba(0,0,0,.6));}
+#guide g{transition:opacity .5s ease;}
+#guideLabel{position:absolute;left:50%;transform:translate(-50%,30px);
+  font-family:var(--f-mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--grey);white-space:nowrap;transition:color .5s;}
+@media(max-width:760px){#guideLabel{display:none;}#guide{width:30px;height:30px;margin:-15px 0 0 -15px;}}
+.stop{position:absolute;left:50%;width:7px;height:7px;margin:-3.5px 0 0 -3.5px;
+  border:1px solid var(--grey-dim);background:var(--ink);transform:rotate(45deg);
+  transition:all .4s;}
+.stop.hit{background:var(--accent);border-color:var(--accent);box-shadow:0 0 10px var(--accent);}
 
-/* ── LIGHT MODE ── */
-@media(prefers-color-scheme: light){
-  :root{
-    --ink: #f7f4ef;
-    --paper: #1a1814;
-    --amber: #b86800;
-    --amber-dim: #8f5000;
-    --teal: #0f5f55;
-    --mid: #5a5448;
-    --mist: #2e2a24;
-    --border: rgba(184,104,0,0.2);
-  }
+@keyframes idleSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes flapW{0%,100%{transform:scaleY(1)}50%{transform:scaleY(.4)}}
+#guide .fEagle .wing{animation:flapW .6s ease-in-out infinite;transform-origin:center;}
+#guide .fCoin .inner{animation:idleSpin 4s linear infinite;transform-origin:22px 22px;}
 
-  body{ background: #f7f4ef; color: #1a1814; }
-  body::before{ opacity: 0.12; }
+/* ---------------- TOP BAR ---------------- */
+header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 26px;background:rgba(11,12,16,.82);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);}
+.bar .logo{font-family:var(--f-disp);font-weight:700;font-size:.95rem;letter-spacing:.12em;
+  color:var(--accent);text-decoration:none;transition:color .5s;}
+.bar nav{display:flex;gap:26px;}
+.bar nav a{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey);text-decoration:none;transition:color .2s;}
+.bar nav a:hover{color:var(--paper);}
+@media(max-width:760px){.bar nav{display:none;}}
 
-  nav{
-    background: rgba(247,244,239,0.92);
-    border-bottom: 1px solid rgba(184,104,0,0.18);
-  }
-  .nav-links a{ color: #3a3630; }
+/* ---------------- HERO ---------------- */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding-top:70px;position:relative;}
+.boot{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--grey);margin-bottom:26px;display:flex;align-items:center;gap:12px;}
+.boot::before{content:'';width:34px;height:1px;background:var(--accent);}
+.boot b{color:var(--accent);font-weight:500;}
+#hero h1{font-size:clamp(2.7rem,7vw,5.4rem);font-weight:700;letter-spacing:-.02em;}
+#hero h1 .z1{color:var(--gold);}
+#hero h1 .z2{color:var(--magenta);}
+#hero h1 .z3{color:var(--cyan);}
+.hero-role{font-family:var(--f-mono);font-size:clamp(.8rem,1.6vw,1rem);color:var(--grey);
+  letter-spacing:.18em;text-transform:uppercase;margin:18px 0 26px;}
+.hero-copy{max-width:60ch;color:var(--soft);font-size:1rem;margin-bottom:38px;}
+.hero-copy strong{color:var(--paper);font-weight:600;}
+.press{display:inline-flex;align-items:center;gap:12px;font-family:var(--f-mono);
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);
+  text-decoration:none;}
+@keyframes pressBlink{0%,55%{opacity:1}56%,100%{opacity:.15}}
+.press .cue{animation:pressBlink 1.3s steps(1) infinite;}
+.hi-scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:56px;max-width:820px;}
+.hi-scores>div{background:var(--panel);padding:16px 18px;}
+.hs-num{font-family:var(--f-disp);font-weight:700;font-size:1.7rem;color:var(--accent);
+  transition:color .5s;font-variant-numeric:tabular-nums;}
+.hs-lbl{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey);margin-top:4px;}
 
-  .stat-card{
-    background: #fff;
-    border: 1px solid rgba(184,104,0,0.2);
-    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-  }
-  .stat-lbl{ color: #5a5448; }
+/* ---------------- ZONE SHELL ---------------- */
+.zone{padding:12vh 0 10vh;position:relative;}
+.zone-head{margin-bottom:14px;}
+.zone-tag{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--zcolor,var(--accent));display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.zone-tag::after{content:'';flex:1;height:1px;background:var(--line);}
+.zone h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:700;letter-spacing:-.015em;}
+.zone h2 span{color:var(--zcolor);}
+.zone .meta{font-family:var(--f-mono);font-size:.72rem;color:var(--grey);letter-spacing:.1em;
+  margin-top:10px;text-transform:uppercase;}
+.zone .role-line{font-family:var(--f-disp);font-weight:600;font-size:1.05rem;color:var(--soft);margin-top:22px;}
+.zone .lede{max-width:64ch;color:var(--soft);font-size:.98rem;margin-top:14px;}
 
-  .marquee-wrap{ background: rgba(184,104,0,0.04); }
-  .marquee-item{ color: #5a5448; }
+.zgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:44px;align-items:start;}
+@media(max-width:900px){.zgrid{grid-template-columns:1fr;}}
 
-  #experience{ background: rgba(184,104,0,0.04); }
+.panel{border:1px solid var(--line);background:var(--panel);position:relative;}
+.panel .p-head{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--grey);padding:11px 16px;border-bottom:1px solid var(--line);display:flex;
+  justify-content:space-between;align-items:center;background:var(--panel-2);}
+.panel .p-head b{color:var(--zcolor);font-weight:500;}
+.p-body{padding:20px;}
 
-  .exp-desc, .exp-bullets li{ color: #2e2a24; }
-  .exp-company{ color: #3a3630; }
-  .exp-sub{ color: #6a6458; }
-  .tag{ background: rgba(184,104,0,0.07); border-color: rgba(184,104,0,0.28); color: #2e2a24; }
-  .tag.g{ background: rgba(15,95,85,0.08); border-color: rgba(15,95,85,0.3); }
-  .tag.r{ background: rgba(160,50,20,0.07); border-color: rgba(160,50,20,0.28); }
+.feats{list-style:none;display:flex;flex-direction:column;}
+.feats li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:12px 0;
+  border-bottom:1px dashed var(--line);font-size:.9rem;color:var(--soft);}
+.feats li:last-child{border-bottom:none;}
+.feats b{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;color:var(--zcolor);
+  text-transform:uppercase;padding-top:4px;white-space:nowrap;font-weight:500;}
 
-  .proj-grid{ background: rgba(184,104,0,0.12); }
-  .proj-card{ background: #f7f4ef; }
-  .proj-card:hover{ background: #ede9e2; }
-  .proj-num{ color: rgba(184,104,0,0.1); }
-  .proj-desc{ color: #4a4540; }
-  .proj-metrics{ border-top-color: rgba(0,0,0,0.08); }
-  .m-lbl{ color: #5a5448; }
+.tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px;}
+.tag{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:5px 11px;border:1px solid var(--line);color:var(--grey);}
 
-  #skills{ background: rgba(15,95,85,0.04); }
-  .bar-bg{ background: rgba(0,0,0,0.08); }
-  .skill-row{ color: #2e2a24; }
-  .skill-lvl{ color: #6a6458; }
-  .chip{
-    background: #fff;
-    border-color: rgba(0,0,0,0.12);
-    color: #2e2a24;
-  }
-  .chip:hover{ border-color: var(--amber); color: var(--amber); background: rgba(184,104,0,0.06); }
+/* reveal on scroll */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+.rv.in{opacity:1;transform:none;}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
 
-  .about-text p{ color: #2e2a24; }
-  .sb-label{ color: var(--amber); }
-  .sb-item{ border-color: rgba(0,0,0,0.12); color: #2e2a24; }
-  .sb-block{ border-bottom-color: rgba(0,0,0,0.08); }
+/* ============ ZONE 1 · ARRISE — gold ============ */
+#arrise{--zcolor:var(--gold);}
+/* the reel machine */
+.reel-machine{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:22px;}
+.reel{background:var(--ink);border:1px solid rgba(224,168,46,.35);height:120px;
+  position:relative;overflow:hidden;}
+.reel::before,.reel::after{content:'';position:absolute;left:0;right:0;height:34px;z-index:2;pointer-events:none;}
+.reel::before{top:0;background:linear-gradient(180deg,var(--ink),transparent);}
+.reel::after{bottom:0;background:linear-gradient(0deg,var(--ink),transparent);}
+.reel .strip{position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;}
+.reel .cell{height:120px;display:flex;flex-direction:column;align-items:center;justify-content:center;flex:none;}
+.reel .cell .v{font-family:var(--f-disp);font-weight:700;font-size:1.9rem;color:var(--gold);font-variant-numeric:tabular-nums;}
+.reel .cell .l{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-top:2px;}
+.reel .cell .sym{font-size:1.6rem;opacity:.4;}
+@keyframes reelSpin{from{transform:translateY(0)}to{transform:translateY(-600px)}}
+.reel-machine.spin .strip{animation:reelSpin .9s cubic-bezier(.2,.9,.3,1) forwards;}
+.reel-machine.spin .r2 .strip{animation-duration:1.35s;}
+.reel-machine.spin .r3 .strip{animation-duration:1.8s;}
+.payline{height:1px;background:rgba(224,168,46,.5);position:absolute;left:22px;right:22px;top:50%;z-index:3;pointer-events:none;
+  box-shadow:0 0 12px rgba(224,168,46,.5);opacity:0;transition:opacity .4s 1.9s;}
+.reel-wrap{position:relative;}
+.reel-machine.spin ~ .payline{opacity:1;}
 
-  #contact{ background: linear-gradient(180deg,transparent,rgba(184,104,0,0.06)); }
-  .contact-sub{ color: #5a5448; }
-  .c-link{ color: #1a1814; border-color: rgba(0,0,0,0.15); }
-  .c-link:hover{ border-color: var(--amber); color: var(--amber); }
+/* mini kanban that clears */
+.kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:20px;min-height:190px;}
+.kb-col .kb-h{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--grey);padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:10px;}
+.kb-col .kb-h b{color:var(--gold);font-weight:500;}
+.ticket{border:1px solid var(--line);background:var(--panel-2);padding:8px 10px;margin-bottom:8px;
+  font-family:var(--f-mono);font-size:.6rem;color:var(--soft);letter-spacing:.04em;
+  border-left:2px solid var(--gold);opacity:0;transform:translateX(-14px);
+  transition:opacity .5s ease,transform .5s ease;}
+.ticket.done{border-left-color:#5FBF8A;color:var(--grey);text-decoration:line-through;}
+.kanban.play .ticket{opacity:1;transform:none;}
+.kanban.play .t1{transition-delay:.1s}.kanban.play .t2{transition-delay:.35s}
+.kanban.play .t3{transition-delay:.6s}.kanban.play .t4{transition-delay:.85s}
+.kanban.play .t5{transition-delay:1.1s}.kanban.play .t6{transition-delay:1.35s}
+.kanban.play .t7{transition-delay:1.6s}.kanban.play .t8{transition-delay:1.85s}
 
-  footer{ border-top-color: rgba(0,0,0,0.08); color: #6a6458; }
+/* ============ MORPH BAND ============ */
+.morph-band{padding:9vh 0;text-align:left;}
+.morph-band .mb-inner{border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);
+  padding:26px 0;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+.morph-band .mline{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--grey);}
+.morph-band .mline b{font-weight:500;}
+.morph-band svg{width:130px;height:34px;flex:none;overflow:visible;}
 
-  .sec-line{ background: rgba(184,104,0,0.2); }
-  .sec-tag{ color: var(--amber); }
-  .skill-cat-title{ border-bottom-color: rgba(184,104,0,0.2); }
+/* ============ ZONE 2 · GAMES2WIN — magenta ============ */
+#g2w{--zcolor:var(--magenta);}
+.console{background:var(--ink);font-family:var(--f-mono);font-size:.68rem;line-height:1.9;
+  padding:18px 20px;min-height:230px;color:var(--soft);letter-spacing:.02em;}
+.console .ln{opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;display:block;}
+.console.play .ln{opacity:1;transform:none;}
+.console .ev{color:var(--magenta);}
+.console .ok{color:#5FBF8A;}
+.console .ts{color:var(--grey-dim);}
+.console.play .l1{transition-delay:.05s}.console.play .l2{transition-delay:.35s}
+.console.play .l3{transition-delay:.65s}.console.play .l4{transition-delay:.95s}
+.console.play .l5{transition-delay:1.25s}.console.play .l6{transition-delay:1.55s}
+.console.play .l7{transition-delay:1.85s}.console.play .l8{transition-delay:2.15s}
+.console.play .l9{transition-delay:2.45s}
+.cursor-block{display:inline-block;width:7px;height:12px;background:var(--magenta);vertical-align:-2px;}
+@keyframes cblink{0%,49%{opacity:1}50%,100%{opacity:0}}
+.cursor-block{animation:cblink 1s steps(1) infinite;}
 
-  .btn-ghost{ color: #1a1814; border-color: rgba(26,24,20,0.28); }
-  .btn-ghost:hover{ border-color: var(--amber); color: var(--amber); }
+/* ============ ZONE 3 · UBISOFT — cyan ============ */
+#ubi{--zcolor:var(--cyan);}
+/* sync bar (boss-bar device) */
+.syncbar{padding:22px;}
+.syncbar .sb-top{display:flex;justify-content:space-between;font-family:var(--f-mono);
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);margin-bottom:10px;}
+.syncbar .sb-top b{color:var(--cyan);font-weight:500;font-variant-numeric:tabular-nums;}
+.sb-track{height:14px;border:1px solid rgba(111,211,232,.4);background:var(--ink);
+  position:relative;overflow:hidden;}
+.sb-fill{position:absolute;inset:1px auto 1px 1px;width:0;
+  background:repeating-linear-gradient(90deg,var(--cyan) 0 8px,rgba(111,211,232,.55) 8px 10px);
+  transition:width 2.2s cubic-bezier(.25,.8,.3,1);}
+.syncbar.play .sb-fill{width:98%;}
+.sb-notes{font-family:var(--f-mono);font-size:.6rem;color:var(--grey);margin-top:12px;
+  letter-spacing:.08em;line-height:2;}
+.sb-notes span{display:block;opacity:0;transition:opacity .4s;}
+.syncbar.play .n1{opacity:1;transition-delay:.5s}
+.syncbar.play .n2{opacity:1;transition-delay:1.1s}
+.syncbar.play .n3{opacity:1;transition-delay:1.7s}
 
-  .hero-desc{ color: #3a3630; }
-  .hero-title{ color: #6a6458; }
+/* title cards */
+.titles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:44px;}
+.tcard{background:var(--panel);padding:24px 22px;text-decoration:none;color:inherit;
+  position:relative;transition:background .25s;display:block;min-height:170px;}
+.tcard:hover{background:var(--panel-2);}
+.tcard .tc-k{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tc,var(--cyan));margin-bottom:10px;}
+.tcard h3{font-size:1.02rem;font-weight:700;letter-spacing:-.01em;margin-bottom:8px;}
+.tcard p{font-size:.78rem;color:var(--grey);line-height:1.7;}
+.tcard .go{position:absolute;top:18px;right:18px;color:var(--tc,var(--cyan));opacity:0;
+  transform:translate(-4px,4px);transition:all .22s;font-size:.9rem;}
+.tcard:hover .go{opacity:1;transform:none;}
+.tcard::after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--tc,var(--cyan));
+  opacity:.7;}
 
-  .exp-item{ border-bottom-color: rgba(0,0,0,0.08); }
-  .exp-item:hover{ background: rgba(184,104,0,0.03); }
+/* ---------------- SKILLS ---------------- */
+#skills{padding:11vh 0;}
+.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px;}
+@media(max-width:860px){.sk-grid{grid-template-columns:1fr;}}
+.sk-cat h3{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;padding-bottom:10px;border-bottom:1px solid var(--line);margin-bottom:18px;}
+.sk-row{display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;
+  border-bottom:1px dashed var(--line);font-size:.88rem;color:var(--soft);}
+.sk-row:last-child{border-bottom:none;}
+.sk-lvl{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.06em;padding:7px 12px;
+  border:1px solid var(--line);color:var(--soft);background:var(--panel);transition:all .2s;}
+.chip:hover{border-color:var(--gold);color:var(--gold);}
 
-  .sidebar-block{ border-bottom-color: rgba(0,0,0,0.08); }
+/* certs */
+.certs{margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+@media(max-width:860px){.certs{grid-template-columns:1fr;}}
+.cert-list{list-style:none;}
+.cert-list li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:.84rem;color:var(--soft);
+  display:flex;justify-content:space-between;gap:14px;align-items:baseline;}
+.cert-list li:last-child{border-bottom:none;}
+.cert-list a{color:var(--grey);text-decoration:none;font-family:var(--f-mono);font-size:.62rem;
+  letter-spacing:.1em;white-space:nowrap;}
+.cert-list a:hover{color:var(--gold);}
+
+/* ---------------- ABOUT ---------------- */
+#about{padding:11vh 0;}
+.about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:48px;margin-top:40px;}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+.about-copy p{font-size:.95rem;color:var(--soft);margin-bottom:16px;max-width:62ch;}
+.about-copy strong{color:var(--paper);font-weight:600;}
+.fact{border:1px solid var(--line);background:var(--panel);padding:16px 18px;margin-bottom:12px;}
+.fact .f-h{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--grey);margin-bottom:6px;}
+.fact .f-v{font-size:.88rem;color:var(--soft);}
+
+/* ---------------- CONTACT / LANDING ---------------- */
+#contact{padding:14vh 0 16vh;text-align:left;}
+#contact .final{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--grey);margin-bottom:20px;}
+#contact h2{font-size:clamp(2rem,5vw,3.6rem);font-weight:700;letter-spacing:-.02em;max-width:16ch;}
+#contact h2 em{font-style:normal;color:var(--gold);}
+.contact-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:40px;}
+.btn{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  padding:13px 26px;text-decoration:none;transition:all .2s;display:inline-block;}
+.btn-solid{background:var(--gold);color:var(--ink);}
+.btn-solid:hover{background:#f0bc4a;transform:translateY(-2px);}
+.btn-line{border:1px solid var(--line);color:var(--soft);}
+.btn-line:hover{border-color:var(--gold);color:var(--gold);}
+footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--f-mono);
+  font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--grey-dim);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+
+/* ---------------- DETAIL VIEWS (hash-routed) ---------------- */
+#detail{position:fixed;inset:0;z-index:200;background:var(--ink);overflow-y:auto;
+  display:none;}
+#detail.open{display:block;}
+.dv-wrap{max-width:860px;margin:0 auto;padding:90px 30px 100px;}
+.dv-back{position:fixed;top:0;left:0;right:0;z-index:210;display:flex;align-items:center;
+  gap:14px;padding:16px 26px;background:rgba(11,12,16,.9);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);font-family:var(--f-mono);font-size:.66rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--grey);cursor:pointer;border:none;
+  width:100%;text-align:left;}
+.dv-back:hover{color:var(--paper);}
+.dv-back .arrow{color:var(--dvc,var(--gold));}
+.dv-kicker{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--dvc,var(--gold));margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+.dv-kicker::after{content:'';flex:1;height:1px;background:var(--line);}
+.dv-wrap h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;margin-bottom:10px;}
+.dv-role{font-family:var(--f-mono);font-size:.72rem;color:var(--grey);letter-spacing:.12em;
+  text-transform:uppercase;margin-bottom:34px;}
+.dv-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-bottom:38px;}
+.dv-stats div{background:var(--panel);padding:14px 16px;}
+.dv-stats .v{font-family:var(--f-disp);font-weight:700;font-size:1.4rem;color:var(--dvc,var(--gold));}
+.dv-stats .l{font-family:var(--f-mono);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-top:3px;}
+.dv-wrap h3{font-family:var(--f-mono);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--grey);font-weight:400;margin:30px 0 12px;}
+.dv-wrap p{font-size:.95rem;color:var(--soft);max-width:64ch;margin-bottom:14px;}
+.dv-wrap ul{list-style:none;max-width:70ch;}
+.dv-wrap ul li{padding:9px 0 9px 20px;border-bottom:1px dashed var(--line);font-size:.9rem;
+  color:var(--soft);position:relative;}
+.dv-wrap ul li::before{content:'▸';position:absolute;left:0;color:var(--dvc,var(--gold));font-size:.7rem;top:12px;}
+.dv-wrap ul li:last-child{border-bottom:none;}
+.dv-link{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dvc,var(--gold));text-decoration:none;display:inline-block;margin-top:26px;}
+.dv-link:hover{text-decoration:underline;}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;scroll-behavior:auto !important;}
+  .rv{opacity:1;transform:none;}
 }
-
-
-/* HEADSHOT */
-.headshot-wrap{
-  position:relative;
-  width:160px;
-  height:160px;
-  flex-shrink:0;
-}
-.headshot-wrap img{
-  width:160px;
-  height:160px;
-  object-fit:cover;
-  border-radius:50%;
-  border:3px solid var(--amber);
-  display:block;
-  filter:grayscale(15%);
-  transition:filter 0.3s;
-}
-.headshot-wrap img:hover{ filter:grayscale(0%); }
-.headshot-wrap::after{
-  content:'';
-  position:absolute;
-  inset:-6px;
-  border-radius:50%;
-  border:1px solid rgba(232,160,32,0.25);
-  pointer-events:none;
-}
-@media(prefers-color-scheme:light){
-  .headshot-wrap img{ border-color: var(--amber); }
-}
-
-/* cursor */
-#cur{width:6px;height:6px;background:var(--amber);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:transform 0.08s;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;}
 </style>
 </head>
 <body>
+<div id="tint"></div>
 
-<div id="cur"></div>
-
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">NB.</a>
-  <ul class="nav-links">
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<div id="hero">
-  <div class="reveal">
-    <div style="display:flex;align-items:center;gap:2rem;margin-bottom:2rem;">
-      <div class="headshot-wrap">
-        <img src="data:image/jpeg;base64,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" alt="Neeraj Banerjee">
-      </div>
-      <div>
-          <h1 class="hero-name" style="font-size:clamp(2.2rem,4.5vw,4rem);">Neeraj<br><span class="a">Banerjee</span></h1>
-      </div>
-    </div>
-    <p class="hero-title">Production &nbsp;·&nbsp; Project &nbsp;·&nbsp; Program Management</p>
-    <p class="hero-desc">Production coordinator with 5+ years running delivery pipelines across AAA, mobile, and iGaming titles. Expert in breaking briefs into actionable Jira tickets, owning board hygiene, sprint ceremonies, and stakeholder reporting — while keeping 10+ concurrent titles at 95% on-time release adherence.</p>
-    <div class="cta-row">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="#contact" class="btn btn-ghost">Get in Touch</a>
-    </div>
-  </div>
-
-  <div class="stat-grid reveal" style="transition-delay:0.2s">
-    <div class="stat-card">
-      <div class="stat-num">5.2</div>
-      <div class="stat-lbl">Years of experience</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">500+</div>
-      <div class="stat-lbl">Titles shipped — ideation to release</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">95%</div>
-      <div class="stat-lbl">On-time delivery rate</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">3</div>
-      <div class="stat-lbl">Gaming verticals: AAA · Mobile · iGaming</div>
-    </div>
+<!-- ================= RAIL ================= -->
+<div id="rail" aria-hidden="true">
+  <div class="track"></div>
+  <div id="railFill"></div>
+  <div id="railStops"></div>
+  <div id="guide">
+    <svg viewBox="0 0 44 44">
+      <g class="fCoin" id="fCoin" opacity="1">
+        <circle cx="22" cy="22" r="12" fill="none" stroke="#E0A82E" stroke-width="2"/>
+        <g class="inner"><path d="M22 14 L24.5 19.5 L30 22 L24.5 24.5 L22 30 L19.5 24.5 L14 22 L19.5 19.5 Z" fill="#E0A82E"/></g>
+      </g>
+      <g class="fCursor" id="fCursor" opacity="0">
+        <rect x="14" y="8" width="16" height="28" rx="3.5" fill="none" stroke="#FF3E8A" stroke-width="2"/>
+        <circle cx="22" cy="22" r="4" fill="#FF3E8A"/>
+        <rect x="19" y="31" width="6" height="1.6" rx=".8" fill="#FF3E8A" opacity=".7"/>
+      </g>
+      <g class="fEagle" id="fEagle" opacity="0">
+        <path class="wing" d="M22 14 L36 22 L22 19.5 L8 22 Z" fill="#6FD3E8"/>
+        <path d="M22 19 L26 32 L22 28.5 L18 32 Z" fill="#6FD3E8" opacity=".75"/>
+      </g>
+      <g class="fMono" id="fMono" opacity="0">
+        <rect x="10" y="10" width="24" height="24" fill="none" stroke="#EDEAE3" stroke-width="1.6"/>
+        <text x="22" y="27" text-anchor="middle" fill="#E0A82E" font-family="Chakra Petch, sans-serif" font-size="12" font-weight="700">NB</text>
+      </g>
+    </svg>
+    <div id="guideLabel">insert coin</div>
   </div>
 </div>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <div class="marquee-item"><span>▸</span>ARRISE / Pragmatic Play</div>
-    <div class="marquee-item"><span>▸</span>Ubisoft Entertainment India</div>
-    <div class="marquee-item"><span>▸</span>Games2win India</div>
-    <div class="marquee-item"><span>▸</span>Slots · Virtual Sports</div>
-    <div class="marquee-item"><span>▸</span>AAA Console & VR Titles</div>
-    <div class="marquee-item"><span>▸</span>Agile · Scrum · Jira</div>
-    <div class="marquee-item"><span>▸</span></div>
-    <div class="marquee-item"><span>▸</span>ARRISE / Pragmatic Play</div>
-    <div class="marquee-item"><span>▸</span>Ubisoft Entertainment India</div>
-    <div class="marquee-item"><span>▸</span>Games2win India</div>
-    <div class="marquee-item"><span>▸</span>Slots · Virtual Sports</div>
-    <div class="marquee-item"><span>▸</span>AAA Console & VR Titles</div>
-    <div class="marquee-item"><span>▸</span>Agile · Scrum · Jira</div>
-    <div class="marquee-item"><span>▸</span></div>
+<header class="bar">
+  <a class="logo" href="#hero">NB<span style="color:var(--grey-dim)">.RUN</span></a>
+  <nav>
+    <a href="#arrise">Arrise</a>
+    <a href="#g2w">Games2win</a>
+    <a href="#ubi">Ubisoft</a>
+    <a href="#skills">Skills</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <div class="boot">Loading run <b>·</b> subject: N. Banerjee <b>·</b> 5.2 yrs on record</div>
+  <h1>One career.<br>Three worlds.<br><span class="z1">Slots</span> · <span class="z2">mobile</span> · <span class="z3">AAA</span>.</h1>
+  <p class="hero-role">Production · Project · Program Management</p>
+  <p class="hero-copy">I run delivery pipelines for game studios — <strong>500+ titles shipped</strong> from ideation
+  to live release, at a <strong>95% on-time rate</strong>, across three very different corners of the industry.
+  This page plays my career back in reverse: follow the guide on the left. It changes shape every time
+  the industry did.</p>
+  <a class="press" href="#arrise"><span class="cue">▼</span> Press scroll to start</a>
+
+  <div class="hi-scores" aria-label="Career high scores">
+    <div><div class="hs-num" data-count="5.2" data-dec="1">0</div><div class="hs-lbl">Years in games</div></div>
+    <div><div class="hs-num" data-count="500" data-suffix="+">0</div><div class="hs-lbl">Titles shipped</div></div>
+    <div><div class="hs-num" data-count="95" data-suffix="%">0</div><div class="hs-lbl">On-time delivery</div></div>
+    <div><div class="hs-num" data-count="3">0</div><div class="hs-lbl">Gaming verticals</div></div>
+  </div>
+</section>
+
+<!-- ================= ZONE 1 · ARRISE ================= -->
+<section class="zone" id="arrise" data-zone="arrise">
+  <div class="zone-head rv">
+    <div class="zone-tag">Zone 01 · Present day · iGaming · Pune</div>
+    <h2>ARRISE <span>powering Pragmatic Play</span></h2>
+    <div class="meta">Sep 2024 — Present · Slots &amp; Virtual Sports</div>
+    <div class="role-line">Project &amp; Program Management Coordinator</div>
+    <p class="lede">The live-ops zone. Ten-plus concurrent titles, one operational layer, no quiet weeks.
+    I own ticket writing, board hygiene, sprint ceremonies, dependency tracking and stakeholder
+    reporting for one of the highest-volume content pipelines in iGaming.</p>
+  </div>
+
+  <div class="zgrid">
+    <div class="panel rv d1 reel-wrap">
+      <div class="p-head"><span>DEVICE · PAYOUT_REPORT.EXE</span><b>spin on view</b></div>
+      <div class="reel-machine" id="reelMachine">
+        <div class="reel r1"><div class="strip">
+          <div class="cell"><span class="sym">◆</span></div>
+          <div class="cell"><span class="sym">▲</span></div>
+          <div class="cell"><span class="sym">●</span></div>
+          <div class="cell"><span class="sym">◆</span></div>
+          <div class="cell"><span class="sym">▲</span></div>
+          <div class="cell"><span class="v">95%</span><span class="l">On-time</span></div>
+        </div></div>
+        <div class="reel r2"><div class="strip">
+          <div class="cell"><span class="sym">●</span></div>
+          <div class="cell"><span class="sym">◆</span></div>
+          <div class="cell"><span class="sym">▲</span></div>
+          <div class="cell"><span class="sym">●</span></div>
+          <div class="cell"><span class="sym">◆</span></div>
+          <div class="cell"><span class="v">−30%</span><span class="l">Delays</span></div>
+        </div></div>
+        <div class="reel r3"><div class="strip">
+          <div class="cell"><span class="sym">▲</span></div>
+          <div class="cell"><span class="sym">●</span></div>
+          <div class="cell"><span class="sym">◆</span></div>
+          <div class="cell"><span class="sym">▲</span></div>
+          <div class="cell"><span class="sym">●</span></div>
+          <div class="cell"><span class="v">−40%</span><span class="l">Incident time</span></div>
+        </div></div>
+      </div>
+      <div class="payline"></div>
+    </div>
+
+    <div class="panel rv d2">
+      <div class="p-head"><span>RUN LOG · ZONE 01</span><b>▸</b></div>
+      <div class="p-body">
+        <ul class="feats">
+          <li><b>500+</b><span>Titles delivered across Slots &amp; Virtual Sports — ideation, bespoke builds, pre-production, sprint execution, QA, live release.</span></li>
+          <li><b>Jira</b><span>Implemented and standardised Jira Work Management across departments for end-to-end progress tracking.</span></li>
+          <li><b>Risk</b><span>Identified and mitigated 20+ high-impact risks and dependencies — a 30% reduction in project delays.</span></li>
+          <li><b>Scrum</b><span>Daily standups and sprint planning: +20% sprint velocity, −15% scope creep.</span></li>
+          <li><b>Incident</b><span>Coordinated responses cutting average resolution time 40%; new prioritisation workflow lifted throughput 18%.</span></li>
+        </ul>
+        <a class="dv-link" style="--dvc:var(--gold)" href="#/studios/arrise">Open the 500-title programme ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel rv" style="margin-top:28px;">
+    <div class="p-head"><span>DEVICE · BOARD_HYGIENE.KANBAN</span><b>tickets clear on view</b></div>
+    <div class="kanban" id="kanban">
+      <div class="kb-col"><div class="kb-h">Backlog <b>·</b></div>
+        <div class="ticket t7">GD-2214 · bespoke reskin brief</div>
+        <div class="ticket t8">GD-2215 · cert package EU</div>
+      </div>
+      <div class="kb-col"><div class="kb-h">In progress <b>·</b></div>
+        <div class="ticket t4">GD-2209 · math model review</div>
+        <div class="ticket t5">GD-2211 · localisation pass ×14</div>
+        <div class="ticket t6">GD-2212 · promo tools hookup</div>
+      </div>
+      <div class="kb-col"><div class="kb-h">Done <b>✓</b></div>
+        <div class="ticket done t1">GD-2201 · release notes v1.0</div>
+        <div class="ticket done t2">GD-2204 · stakeholder report</div>
+        <div class="ticket done t3">GD-2207 · dependency unblock</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tagrow rv">
+    <span class="tag">Agile / Scrum</span><span class="tag">Jira WM</span><span class="tag">Risk Management</span>
+    <span class="tag">Incident Coordination</span><span class="tag">Slots</span><span class="tag">Virtual Sports</span>
+  </div>
+</section>
+
+<!-- morph 1 -->
+<div class="morph-band rv" aria-hidden="true">
+  <div class="mb-inner">
+    <svg viewBox="0 0 130 34">
+      <circle cx="16" cy="17" r="9" fill="none" stroke="#E0A82E" stroke-width="1.6"/>
+      <path d="M40 17 H86" stroke="#55534E" stroke-width="1" stroke-dasharray="3 4"/>
+      <path d="M86 17 l-5 -4 M86 17 l-5 4" stroke="#55534E" stroke-width="1" fill="none"/>
+      <rect x="102" y="5" width="14" height="24" rx="3" fill="none" stroke="#FF3E8A" stroke-width="1.6"/>
+    </svg>
+    <span class="mline">Rewinding <b style="color:#E0A82E">· the reel folds into a phone ·</b> 2023, Mumbai</span>
   </div>
 </div>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="container">
-    <div class="sec-header reveal">
-      <div class="sec-tag">01 / Experience</div>
-      <div class="sec-line"></div>
+<!-- ================= ZONE 2 · GAMES2WIN ================= -->
+<section class="zone" id="g2w" data-zone="g2w">
+  <div class="zone-head rv">
+    <div class="zone-tag">Zone 02 · Mobile F2P · Mumbai</div>
+    <h2>Games<span>2win</span> India</h2>
+    <div class="meta">Oct 2023 — Sep 2024 · 475M+ publisher downloads</div>
+    <div class="role-line">Project Event Analyst</div>
+    <p class="lede">The telemetry zone. Every swipe a player makes is an event, and somebody has to
+    decide which ones matter, spec them, and prove they fire. That was me — 30+ tracking frameworks
+    across a portfolio measured in hundreds of millions of installs.</p>
+  </div>
+
+  <div class="zgrid">
+    <div class="panel rv d1">
+      <div class="p-head"><span>DEVICE · EVENT_STREAM.LOG</span><b>prints on view</b></div>
+      <div class="console" id="console">
+        <span class="ln l1"><span class="ts">[00:00.412]</span> <span class="ev">session_start</span> {platform:"android", src:"organic"}</span>
+        <span class="ln l2"><span class="ts">[00:03.108]</span> <span class="ev">level_start</span> {id:12, mode:"career"}</span>
+        <span class="ln l3"><span class="ts">[00:41.966]</span> <span class="ev">level_fail</span> {id:12, at:"checkpoint_3"}</span>
+        <span class="ln l4"><span class="ts">[00:42.301]</span> <span class="ev">friction_flag</span> → routed to UI/UX review</span>
+        <span class="ln l5"><span class="ts">[00:44.870]</span> <span class="ev">retry_tap</span> {latency_ms:2569}</span>
+        <span class="ln l6"><span class="ts">[01:02.114]</span> <span class="ev">iap_view</span> {sku:"booster_s"}</span>
+        <span class="ln l7"><span class="ts">[01:12.400]</span> <span class="ok">✓ validation pass</span> — tracker 27/30 consistent</span>
+        <span class="ln l8"><span class="ts">[01:12.402]</span> <span class="ok">✓ session +12% duration · bounce −18%</span></span>
+        <span class="ln l9"><span class="ts">[01:12.403]</span> awaiting next event <span class="cursor-block"></span></span>
+      </div>
     </div>
 
-    <!-- ARRISE -->
-    <div class="exp-item reveal">
-      <div>
-        <div class="exp-period">Sep 2024 — Present</div>
-        <div class="exp-company">ARRISE<br>powering Pragmatic Play</div>
-        <div class="exp-sub">iGaming · Pune</div>
-      </div>
-      <div>
-        <div class="exp-role">Project & Program Management Coordinator</div>
-        <ul class="exp-bullets">
-          <li>Led delivery of 500+ titles (Slots & Virtual Sports) — from ideation and bespoke tailored game builds through to live release — maintaining a 95% on-time delivery rate.</li>
-          <li>Proactively identified and mitigated 20+ high-impact risks and dependencies — contributing to a 30% reduction in project delays.</li>
-          <li>Implemented and standardised Jira Work Management across departments for end-to-end game progress tracking and workflow visibility.</li>
-          <li>Facilitated daily Scrum standups and sprint planning, achieving a 20% improvement in sprint velocity and 15% reduction in scope creep.</li>
-          <li>Coordinated incident responses, reducing average resolution time by 40%; introduced ticket prioritisation workflow improving throughput by 18%.</li>
-          <li>Partnered with Product teams to align feature requirements, refine game specs, and ensure delivery met functional and business expectations.</li>
+    <div class="panel rv d2">
+      <div class="p-head"><span>RUN LOG · ZONE 02</span><b>▸</b></div>
+      <div class="p-body">
+        <ul class="feats">
+          <li><b>30+</b><span>Structured feature-tracking frameworks designed and validated to measure gameplay engagement.</span></li>
+          <li><b>Specs</b><span>Gathered and managed feature requirements for analytics implementations across multiple titles — gaps caught before dev cycles.</span></li>
+          <li><b>Sprints</b><span>Backlog grooming and sprint planning with Product &amp; Design for teams of 6–10.</span></li>
+          <li><b>UX</b><span>Player-friction analysis drove UI/UX changes: +12% session duration, −18% bounce.</span></li>
+          <li><b>QA</b><span>50+ tracking inconsistencies resolved through validation cycles — data reliability up 40%.</span></li>
         </ul>
-        <div class="tags">
-          <span class="tag">Agile / Scrum</span>
-          <span class="tag">Jira</span>
-          <span class="tag">Risk Management</span>
-          <span class="tag">Incident Coordination</span>
-          <span class="tag r">iGaming</span>
-          <span class="tag">Virtual Sports</span>
-          
-          <span class="tag">Slots</span>
-        </div>
+        <a class="dv-link" style="--dvc:var(--magenta)" href="#/studios/games2win">Open the tracking programme ↗</a>
       </div>
     </div>
+  </div>
 
-    <!-- Games2win -->
-    <div class="exp-item reveal">
-      <div>
-        <div class="exp-period">Oct 2023 — Sep 2024</div>
-        <div class="exp-company">Games2win India</div>
-        <div class="exp-sub">Mobile Gaming · Mumbai</div>
-      </div>
-      <div>
-        <div class="exp-role">Project Event Analyst</div>
-        <ul class="exp-bullets">
-          <li>Gathered, documented, and managed feature requirements for analytics implementations across multiple mobile titles, ensuring functional gaps were identified before development cycles.</li>
-          <li>Designed and validated 30+ structured feature tracking frameworks to measure gameplay engagement, providing actionable insights to Product and Design teams.</li>
-          <li>Supported sprint planning and backlog grooming alongside Product and Design, maintaining coordination between feature requests and delivery capacity for teams of 6–10.</li>
-          <li>Analysed player interaction data to identify friction points — influencing UI/UX improvements that increased session duration by 12% and reduced bounce rates by 18%.</li>
-          <li>Resolved 50+ tracking inconsistencies through structured validation cycles, improving data reliability by 40% and strengthening KPI reporting quality.</li>
-        </ul>
-        <div class="tags">
-          <span class="tag g">Mobile Gaming</span>
-          <span class="tag">Event Tracking</span>
-          <span class="tag">QA Cycles</span>
-          <span class="tag">Firebase</span>
-          <span class="tag">Cross-functional Collaboration</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Ubisoft -->
-    <div class="exp-item reveal">
-      <div>
-        <div class="exp-period">Mar 2021 — Oct 2023</div>
-        <div class="exp-company">Ubisoft<br>Entertainment India</div>
-        <div class="exp-sub">AAA · Pune</div>
-      </div>
-      <div>
-        <div class="exp-role">Online Requirements Project Specialist</div>
-        <ul class="exp-bullets">
-          <li>Supervised a QA team of 8–10 across 5+ AAA game titles, achieving a 98% bug identification and resolution rate.</li>
-          <li>Conducted requirement analysis and created detailed test plans, reducing test cycle redundancy by 25%.</li>
-          <li>Fast-tracked from Junior Game Tester to Project Specialist within 18 months; introduced a test documentation framework that reduced new-hire onboarding time by 30%.</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">AAA Production</span>
-          <span class="tag">QA Leadership</span>
-          <span class="tag">Requirements Analysis</span>
-          <span class="tag">Test Planning</span>
-          <span class="tag r">Ubisoft</span>
-        </div>
-      </div>
-    </div>
-
+  <div class="tagrow rv">
+    <span class="tag">Event Tracking</span><span class="tag">Firebase</span><span class="tag">QA Cycles</span>
+    <span class="tag">Mobile F2P</span><span class="tag">Cross-functional</span>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <div class="sec-header reveal">
-      <div class="sec-tag">02 / Projects</div>
-      <div class="sec-line"></div>
+<!-- morph 2 -->
+<div class="morph-band rv" aria-hidden="true">
+  <div class="mb-inner">
+    <svg viewBox="0 0 130 34">
+      <rect x="8" y="5" width="14" height="24" rx="3" fill="none" stroke="#FF3E8A" stroke-width="1.6"/>
+      <path d="M40 17 H86" stroke="#55534E" stroke-width="1" stroke-dasharray="3 4"/>
+      <path d="M86 17 l-5 -4 M86 17 l-5 4" stroke="#55534E" stroke-width="1" fill="none"/>
+      <path d="M112 11 l10 6 -10 -1.5 -10 1.5 Z" fill="#6FD3E8"/>
+      <path d="M112 15 l3 9 -3 -2.4 -3 2.4 Z" fill="#6FD3E8" opacity=".7"/>
+    </svg>
+    <span class="mline">Rewinding <b style="color:#FF3E8A">· the phone unfolds into wings ·</b> 2021, Pune</span>
+  </div>
+</div>
+
+<!-- ================= ZONE 3 · UBISOFT ================= -->
+<section class="zone" id="ubi" data-zone="ubi">
+  <div class="zone-head rv">
+    <div class="zone-tag">Zone 03 · Origin · AAA / VR · Pune</div>
+    <h2>Ubisoft <span>Entertainment India</span></h2>
+    <div class="meta">Mar 2021 — Oct 2023 · 5+ AAA titles</div>
+    <div class="role-line">Online Requirements Project Specialist · from Junior Game Tester in 18 months</div>
+    <p class="lede">Where the run began. I supervised a QA team of 8–10 across five AAA productions,
+    wrote the test plans, and built a documentation framework that cut new-hire onboarding time by 30%.
+    Every shipped title below is its own page — open one.</p>
+  </div>
+
+  <div class="zgrid">
+    <div class="panel rv d1">
+      <div class="p-head"><span>DEVICE · SYNCHRONISATION</span><b>bug identification</b></div>
+      <div class="syncbar" id="syncbar">
+        <div class="sb-top"><span>Memory integrity · 5 titles</span><b>98% SYNC</b></div>
+        <div class="sb-track"><div class="sb-fill"></div></div>
+        <div class="sb-notes">
+          <span class="n1">✓ 98% bug identification &amp; resolution rate across team of 8–10</span>
+          <span class="n2">✓ test-cycle redundancy −25% via requirement analysis &amp; test plans</span>
+          <span class="n3">✓ onboarding time −30% via documentation framework</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel rv d2">
+      <div class="p-head"><span>RUN LOG · ZONE 03</span><b>▸</b></div>
+      <div class="p-body">
+        <ul class="feats">
+          <li><b>Team</b><span>Supervised QA across 5+ AAA titles with a 98% bug identification and resolution rate.</span></li>
+          <li><b>Plans</b><span>Requirement analysis and detailed test plans — 25% less test-cycle redundancy.</span></li>
+          <li><b>Growth</b><span>Junior Game Tester → Project Specialist inside 18 months.</span></li>
+          <li><b>Docs</b><span>Test documentation framework adopted across teams; onboarding −30%.</span></li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div style="max-width:1080px;margin:0 auto;padding:0 2rem;position:relative;z-index:1;">
-    <div class="proj-grid reveal">
 
-      <!-- Pragmatic Play - wide -->
-      <a class="proj-card wide" href="https://www.pragmaticplay.com/en/games/" target="_blank">
-        <div class="proj-arrow">↗</div>
-        <div class="proj-num">01</div>
-        <div class="proj-badge">iGaming · ARRISE / Pragmatic Play</div>
-        <div class="proj-title">Slots & Virtual Sports Titles</div>
-        <p class="proj-desc">Delivered 500+ iGaming titles across Slots and Virtual Sports for Pragmatic Play — spanning the full lifecycle from ideation, bespoke game tailoring, and pre-production planning through sprint execution, QA, stakeholder reporting, and live release. Implemented Jira Work Management org-wide for end-to-end visibility. Achieved 95% on-time delivery, 30% reduction in delays, and 40% faster incident resolution.</p>
-        <div class="proj-metrics">
-          <div><div class="m-val">500+</div><div class="m-lbl">Titles shipped</div></div>
-          <div><div class="m-val">95%</div><div class="m-lbl">On-time delivery</div></div>
-          <div><div class="m-val">−40%</div><div class="m-lbl">Incident resolution time</div></div>
-          <div><div class="m-val">−30%</div><div class="m-lbl">Project delays</div></div>
-        </div>
-      </a>
-
-      <!-- AC Nexus VR -->
-      <a class="proj-card" href="https://www.ubisoft.com/en-us/game/assassins-creed/nexus-vr" target="_blank">
-        <div class="proj-arrow">↗</div>
-        <div class="proj-num">02</div>
-        <div class="proj-badge">AAA · VR · Ubisoft</div>
-        <div class="proj-title">Assassin's Creed Nexus VR</div>
-        <p class="proj-desc">Contributed to QA and requirements management on Ubisoft's flagship VR title. Coordinated cross-team testing pipelines and requirement documentation to maintain delivery integrity across a complex, first-person VR production.</p>
-        <div class="proj-metrics">
-          <div><div class="m-val">98%</div><div class="m-lbl">Bug ID rate</div></div>
-          <div><div class="m-val">AAA / VR</div><div class="m-lbl">Production scale</div></div>
-        </div>
-      </a>
-
-      <!-- For Honor -->
-      <a class="proj-card" href="https://www.ubisoft.com/en-au/game/for-honor" target="_blank">
-        <div class="proj-arrow">↗</div>
-        <div class="proj-num">03</div>
-        <div class="proj-badge">AAA · Live Service · Ubisoft</div>
-        <div class="proj-title">For Honor</div>
-        <p class="proj-desc">QA coordination and project documentation on Ubisoft's live-service melee combat title. Managed ongoing testing cycles, bug tracking, and alignment between QA and development teams across long-running seasonal content updates.</p>
-        <div class="proj-metrics">
-          <div><div class="m-val">Live Service</div><div class="m-lbl">Ongoing delivery</div></div>
-          <div><div class="m-val">−25%</div><div class="m-lbl">Test cycle redundancy</div></div>
-        </div>
-      </a>
-
-      <!-- Just Dance / Oddballers -->
-      <a class="proj-card" href="https://www.ubisoft.com/en-gb/game/just-dance/2023" target="_blank">
-        <div class="proj-arrow">↗</div>
-        <div class="proj-num">04</div>
-        <div class="proj-badge">AAA · Ubisoft</div>
-        <div class="proj-title">Just Dance 2023 & Oddballers</div>
-        <p class="proj-desc">Supported QA and requirements delivery on two distinct Ubisoft titles simultaneously — demonstrating the ability to context-switch across very different game genres and production styles within a single sprint cycle.</p>
-        <div class="proj-metrics">
-          <div><div class="m-val">Multi-title</div><div class="m-lbl">Parallel delivery</div></div>
-        </div>
-      </a>
-
-      <!-- XDefiant -->
-      <a class="proj-card" href="https://www.ubisoft.com/en-gb/game/xdefiant" target="_blank">
-        <div class="proj-arrow">↗</div>
-        <div class="proj-num">05</div>
-        <div class="proj-badge">AAA · FPS · Ubisoft</div>
-        <div class="proj-title">XDefiant</div>
-        <p class="proj-desc">Contributed to the QA pipeline for Ubisoft's free-to-play FPS title. Handled test plan documentation and cross-team coordination across development milestones leading up to the game's live launch.</p>
-        <div class="proj-metrics">
-          <div><div class="m-val">F2P FPS</div><div class="m-lbl">Live launch</div></div>
-          <div><div class="m-val">AAA</div><div class="m-lbl">Scale</div></div>
-        </div>
-      </a>
-
-      <!-- Games2win Apps -->
-      <a class="proj-card" href="https://play.google.com/store/apps/developer?id=Games2win.com&hl=en_IN" target="_blank">
-        <div class="proj-arrow">↗</div>
-        <div class="proj-num">06</div>
-        <div class="proj-badge">Mobile · Games2win</div>
-        <div class="proj-title">Games2win Mobile App Portfolio</div>
-        <p class="proj-desc">Designed and tested 30+ event trackers across multiple mobile titles for a publisher with 475M+ global downloads. Drove QA cycles that improved tracker reliability by 40% and contributed directly to UI/UX decisions improving session length and retention.</p>
-        <div class="proj-metrics">
-          <div><div class="m-val">30+</div><div class="m-lbl">Trackers shipped</div></div>
-          <div><div class="m-val">475M+</div><div class="m-lbl">Publisher downloads</div></div>
-        </div>
-      </a>
-
-    </div>
+  <div class="titles rv">
+    <a class="tcard" style="--tc:#6FD3E8" href="#/titles/ac-nexus-vr">
+      <span class="go">↗</span>
+      <div class="tc-k">VR · Flagship</div>
+      <h3>Assassin's Creed Nexus VR</h3>
+      <p>QA &amp; requirements on Ubisoft's flagship VR title — cross-team testing pipelines for a first-person VR production.</p>
+    </a>
+    <a class="tcard" style="--tc:#E8B44A" href="#/titles/for-honor">
+      <span class="go">↗</span>
+      <div class="tc-k">Live service</div>
+      <h3>For Honor</h3>
+      <p>Seasonal content cycles on the melee live-service — ongoing test cycles, bug tracking, QA↔dev alignment.</p>
+    </a>
+    <a class="tcard" style="--tc:#FF6B4A" href="#/titles/xdefiant">
+      <span class="go">↗</span>
+      <div class="tc-k">F2P FPS · Launch</div>
+      <h3>XDefiant</h3>
+      <p>Test-plan documentation and cross-team coordination through the milestones leading to live launch.</p>
+    </a>
+    <a class="tcard" style="--tc:#C77DFF" href="#/titles/just-dance-2023">
+      <span class="go">↗</span>
+      <div class="tc-k">Multi-title</div>
+      <h3>Just Dance 2023 &amp; Oddballers</h3>
+      <p>Two genres, one sprint cycle — parallel QA and requirements delivery across wildly different productions.</p>
+    </a>
+    <a class="tcard" style="--tc:#5FBF8A" href="#/studios/games2win">
+      <span class="go">↗</span>
+      <div class="tc-k">Mobile · Portfolio</div>
+      <h3>Games2win App Portfolio</h3>
+      <p>30+ event trackers for a 475M-download publisher — reliability +40%, sessions +12%.</p>
+    </a>
+    <a class="tcard" style="--tc:#E0A82E" href="#/studios/arrise">
+      <span class="go">↗</span>
+      <div class="tc-k">iGaming · Programme</div>
+      <h3>The 500-Title Programme</h3>
+      <p>Full-lifecycle delivery machine at ARRISE — 95% on-time, −30% delays, −40% incident time.</p>
+    </a>
   </div>
 </section>
 
-<!-- SKILLS -->
+<!-- ================= SKILLS ================= -->
 <section id="skills">
-  <div class="container">
-    <div class="sec-header reveal">
-      <div class="sec-tag">03 / Skills & Tools</div>
-      <div class="sec-line"></div>
+  <div class="zone-head rv">
+    <div class="zone-tag" style="--zcolor:var(--gold)">Loadout · Skills &amp; tools</div>
+    <h2>What the run <span style="color:var(--gold)">was played with</span></h2>
+  </div>
+  <div class="sk-grid">
+    <div class="sk-cat rv d1">
+      <h3>Project &amp; Program Management</h3>
+      <div class="sk-row"><span>Agile / Scrum delivery</span><span class="sk-lvl">Fluent</span></div>
+      <div class="sk-row"><span>Sprint planning &amp; retrospectives</span><span class="sk-lvl">Fluent</span></div>
+      <div class="sk-row"><span>Cross-functional collaboration</span><span class="sk-lvl">Fluent</span></div>
+      <div class="sk-row"><span>Risk &amp; issue management</span><span class="sk-lvl">Seasoned</span></div>
+      <div class="sk-row"><span>Stakeholder communication</span><span class="sk-lvl">Seasoned</span></div>
+      <div class="sk-row"><span>Incident coordination</span><span class="sk-lvl">Proficient</span></div>
+      <h3 style="margin-top:34px;">Domain knowledge</h3>
+      <div class="sk-row"><span>iGaming delivery (Slots / Virtual Sports)</span><span class="sk-lvl">Seasoned</span></div>
+      <div class="sk-row"><span>Requirements &amp; test planning</span><span class="sk-lvl">Seasoned</span></div>
+      <div class="sk-row"><span>AAA production pipelines</span><span class="sk-lvl">Proficient</span></div>
+      <div class="sk-row"><span>Mobile QA &amp; event tracking</span><span class="sk-lvl">Proficient</span></div>
     </div>
-    <div class="skills-layout reveal">
-      <div>
-        <div class="skill-cat-title">Project & Program Management</div>
-        <ul class="skill-list">
-          <li>
-            <div class="skill-row"><span>Agile / Scrum Delivery</span><span class="skill-lvl">Fluent</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:85%"></div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>Sprint Planning & Retrospectives</span><span class="skill-lvl">Fluent</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:83%"></div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>Risk & Issue Management</span><span class="skill-lvl">Seasoned</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:76%"</div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>Stakeholder Communication</span><span class="skill-lvl">Seasoned</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:78%"</div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>Incident Coordination</span><span class="skill-lvl">Proficient</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:72%"></div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>Cross-functional Collaboration</span><span class="skill-lvl">Fluent</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:84%"></div></div>
-          </li>
-        </ul>
-
-        <div class="skill-cat-title">Tools</div>
-        <div class="tools-grid">
-          <div class="chip">Jira</div>
-          <div class="chip">Monday.com</div>
-          <div class="chip">Confluence</div>
-          <div class="chip">Tableau</div>
-          <div class="chip">Power BI</div>
-          <div class="chip">Firebase</div>
-          <div class="chip">Google Analytics</div>
-          <div class="chip">Excel</div>
-          <div class="chip">A/B Testing</div>
-          <div class="chip">Miro</div>
-          <div class="chip">Slack</div>
-          <div class="chip">Claude AI</div>
-          <div class="chip">ChatGPT Codex</div>
-          <div class="chip">Figma</div>
-        </div>
+    <div class="sk-cat rv d2">
+      <h3>Tools</h3>
+      <div class="chips">
+        <span class="chip">Jira</span><span class="chip">Confluence</span><span class="chip">Monday.com</span>
+        <span class="chip">Tableau</span><span class="chip">Power BI</span><span class="chip">Firebase</span>
+        <span class="chip">Google Analytics</span><span class="chip">Excel</span><span class="chip">A/B Testing</span>
+        <span class="chip">Miro</span><span class="chip">Slack</span><span class="chip">Figma</span>
+        <span class="chip">Claude AI</span><span class="chip">ChatGPT Codex</span>
       </div>
-
-      <div>
-        <div class="skill-cat-title">Domain Knowledge</div>
-        <ul class="skill-list">
-          <li>
-            <div class="skill-row"><span>iGaming Delivery (Slots / Virtual Sports)</span><span class="skill-lvl">Seasoned</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:76%"</div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>AAA Game Production Pipelines</span><span class="skill-lvl">Proficient</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:67%"</div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>Mobile Game QA & Event Tracking</span><span class="skill-lvl">Proficient</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:66%"</div></div>
-          </li>
-          <li>
-            <div class="skill-row"><span>Requirements & Test Planning</span><span class="skill-lvl">Seasoned</span></div>
-            <div class="bar-bg"><div class="bar-fill" style="--pct:75%"</div></div>
-          </li>
-        </ul>
-
-        <div class="skill-cat-title" style="margin-top:2.5rem">Certifications</div>
-
-        <div style="margin-bottom:1rem;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);">Anthropic Education</div>
-        <div class="tools-grid" style="margin-bottom:1.8rem;">
-          <a href="https://verify.skilljar.com/c/xakzkah3b26k" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.85rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>🤖 Introduction to Claude Cowork</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">May 2026 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://verify.skilljar.com/c/dxrdnct8gpxe" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.85rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>⌨️ Claude Code 101</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">May 2026 <span style="color:var(--amber)">↗</span></span>
-          </a>
-        </div>
-
-
-        <div style="margin-bottom:1rem;font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);">LinkedIn Learning</div>
-        <div class="tools-grid">
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Agile Foundations</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Aug 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Agile Project Management</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;"><span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Agile Requirements Foundations</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Feb 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Project Management Foundations: Requirements</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Apr 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Business Analyst and Project Manager Collaboration</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Apr 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Business Analysis Foundations</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Feb 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Business Analysis Foundations: Business Process Modeling</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Mar 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Requirements Elicitation and Analysis</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Feb 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Requirements Elicitation for Business Analysts: Interviews</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Mar 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Managing Data with Microsoft 365</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Apr 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Google Analytics Certified</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;"><span style="color:var(--amber)">↗</span></span>
-          </a>
-          <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="chip" style="grid-column:span 2;text-align:left;padding:0.75rem 1rem;text-decoration:none;display:flex;justify-content:space-between;align-items:center;color:var(--mist);">
-            <span>Learning Data Science: Understanding the Basics</span>
-            <span style="font-size:0.65rem;color:var(--mid);margin-left:1rem;white-space:nowrap;">Apr 2024 <span style="color:var(--amber)">↗</span></span>
-          </a>
-        </div>
-      </div>
+      <h3 style="margin-top:34px;">Certifications · pickups collected</h3>
+      <ul class="cert-list">
+        <li><span>Introduction to Claude Cowork — Anthropic</span><a href="https://verify.skilljar.com/c/dxrdnct8gpxe" target="_blank" rel="noopener">verify ↗</a></li>
+        <li><span>Claude Code 101 — Anthropic</span><a href="https://verify.skilljar.com/c/xakzkah3b26k" target="_blank" rel="noopener">verify ↗</a></li>
+        <li><span>Agile Foundations — LinkedIn Learning</span><a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">2024</a></li>
+        <li><span>Agile Project Management</span><a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">2024</a></li>
+        <li><span>Agile Requirements Foundations</span><a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">2024</a></li>
+        <li><span>PM Foundations: Requirements</span><a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">2024</a></li>
+        <li><span>Business Analysis Foundations</span><a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">2024</a></li>
+        <li><span>Requirements Elicitation &amp; Analysis</span><a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">2024</a></li>
+        <li><span>Google Analytics Certified</span><a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">↗</a></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
+<!-- ================= ABOUT ================= -->
 <section id="about">
-  <div class="container">
-    <div class="sec-header reveal">
-      <div class="sec-tag">04 / About</div>
-      <div class="sec-line"></div>
+  <div class="zone-head rv">
+    <div class="zone-tag" style="--zcolor:var(--cyan)">Player profile</div>
+    <h2>About the <span style="color:var(--cyan)">player</span></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-copy rv d1">
+      <p>I'm a production coordinator with <strong>5 years and 2 months</strong> of experience running
+      delivery pipelines entirely within the games industry — AAA, mobile, and iGaming.</p>
+      <p>I started at <strong>Ubisoft Entertainment India</strong>, growing from Junior Game Tester to
+      Online Requirements Project Specialist across 5+ AAA titles including Assassin's Creed Nexus VR,
+      For Honor and XDefiant — building Jira dashboards, validating feature requirements, and writing
+      documentation frameworks that outlived my tenure.</p>
+      <p>At <strong>Games2win India</strong> I moved into requirements and coordination — analytics specs,
+      sprint support, and UI/UX calls that measurably improved player engagement.</p>
+      <p>Now at <strong>ARRISE powering Pragmatic Play</strong>, I own the operational layer across 10+
+      concurrent iGaming titles, holding a 95% on-time release rate across Slots and Virtual Sports.</p>
+      <p>Kolkata-based, roots in Pune. Open to relocation.</p>
     </div>
-    <div class="about-grid reveal">
-      <div class="about-text">
-        <p>I'm a production coordinator with <strong>5 years and 2 months</strong> of experience running delivery pipelines entirely within the games industry — across AAA, mobile, and iGaming verticals.</p>
-        <p>I started at <strong>Ubisoft Entertainment India</strong>, where I grew from Junior Game Tester to Online Requirements Project Specialist, working across 5+ AAA titles including Assassin's Creed Nexus VR, For Honor, and XDefiant. I built Jira dashboards, validated feature requirements, and developed documentation frameworks adopted across teams.</p>
-        <p>At <strong>Games2win India</strong>, I moved into a requirements and coordination role — gathering and managing feature specs for analytics implementations across mobile titles, supporting sprint planning, and driving UI/UX improvements that measurably improved player engagement.</p>
-        <p>Now at <strong>ARRISE powering Pragmatic Play</strong>, I own the full operational layer across 10+ concurrent iGaming titles — ticket writing, board hygiene, sprint ceremonies, dependency tracking, and stakeholder reporting — maintaining 95% on-time release adherence across Slots and Virtual Sports pipelines.</p>
-        <p>Kolkata-based, with roots in Pune. B.Tech in Electronics & Telecom from Symbiosis International University; MBA in Operations & Supply Chain from Savitribai Phule Pune University.</p>
+    <div class="rv d2">
+      <div class="fact"><div class="f-h">Education</div>
+        <div class="f-v">MBA — Operations &amp; Supply Chain · Savitribai Phule Pune University · 2021–2023</div>
+        <div class="f-v" style="margin-top:6px;">B.Tech — Electronics &amp; Telecom · Symbiosis International University · 2015–2019</div>
       </div>
-      <div>
-        <div class="sb-block">
-          <div class="sb-label">Education</div>
-          <div class="sb-items" style="flex-direction:column;gap:0.8rem;">
-            <div>
-              <div style="font-size:0.8rem;color:var(--paper);margin-bottom:0.2rem;">MBA — Operations & Supply Chain</div>
-              <div style="font-size:0.7rem;color:var(--mid);">Savitribai Phule Pune University · 2021–2023</div>
-            </div>
-            <div>
-              <div style="font-size:0.8rem;color:var(--paper);margin-bottom:0.2rem;">B.Tech — Electronics & Telecom</div>
-              <div style="font-size:0.7rem;color:var(--mid);">Symbiosis International University · 2015–2019</div>
-            </div>
-          </div>
-        </div>
-        <div class="sb-block">
-          <div class="sb-label">Location</div>
-          <div class="sb-items">
-            <div class="sb-item">Kolkata, West Bengal</div>
-            <div class="sb-item">Open to relocation</div>
-          </div>
-        </div>
-        <div class="sb-block">
-          <div class="sb-label">Languages</div>
-          <div class="sb-items">
-            <div class="sb-item">English</div>
-            <div class="sb-item">Bengali</div>
-            <div class="sb-item">Hindi</div>
-            <div class="sb-item">Marathi</div>
-            <div class="sb-item">Assamese</div>
-          </div>
-        </div>
-        <div class="sb-block">
-          <div class="sb-label">Verticals Covered</div>
-          <div class="sb-items">
-            <div class="sb-item">iGaming</div>
-            <div class="sb-item">AAA Console / VR</div>
-            <div class="sb-item">Mobile Gaming</div>
-          </div>
-        </div>
-      </div>
+      <div class="fact"><div class="f-h">Location</div><div class="f-v">Kolkata, West Bengal · open to relocation</div></div>
+      <div class="fact"><div class="f-h">Languages</div><div class="f-v">English · Bengali · Hindi · Marathi · Assamese</div></div>
+      <div class="fact"><div class="f-h">Verticals</div><div class="f-v">iGaming · AAA Console / VR · Mobile</div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-hl reveal">LET'S BUILD<br><span class="it">something great</span></div>
-  <p class="contact-sub reveal" style="transition-delay:0.15s">Open to Project Manager · Delivery Manager · Program Manager roles in gaming & tech</p>
-  <div class="contact-links reveal" style="transition-delay:0.28s">
-    <a href="https://neerajdotcom.github.io/" target="_blank" class="c-link">🌐 neerajdotcom.github.io</a>
-    <a href="mailto:neerajbanerjee@gmail.com" class="c-link">✉ neerajbanerjee@gmail.com</a>
-    <a href="tel:+918087791234" class="c-link">📞 +91 80877 91234</a>
-    <a href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" class="c-link">in LinkedIn</a>
-    <a href="#" class="c-link">↓ Download CV</a>
+<!-- ================= CONTACT ================= -->
+<section id="contact" data-zone="end">
+  <div class="rv">
+    <div class="final">Run complete · guide has landed · continue?</div>
+    <h2>Let's ship the <em>next 500</em> together.</h2>
+    <div class="contact-row">
+      <a class="btn btn-solid" href="mailto:neerajbanerjee@gmail.com">Insert coin — email me</a>
+      <a class="btn btn-line" href="https://www.linkedin.com/in/neerajbanerjee" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn btn-line" href="tel:+918087791234">+91 80877 91234</a>
+    </div>
   </div>
 </section>
 
-<footer>Neeraj Banerjee &nbsp;·&nbsp; Project & Program Management &nbsp;·&nbsp; Games Industry &nbsp;·&nbsp; Pune, India</footer>
+<footer>
+  <span>© 2026 Neeraj Banerjee</span>
+  <span>Built as one index.html · no framework · GitHub Pages</span>
+</footer>
+</main>
+
+<!-- ================= DETAIL OVERLAY ================= -->
+<div id="detail" role="dialog" aria-modal="true" aria-label="Title detail">
+  <button class="dv-back" id="dvBack"><span class="arrow">←</span> Back to the run</button>
+  <div class="dv-wrap" id="dvContent"></div>
+</div>
 
 <script>
-// cursor
-const cur = document.getElementById('cur');
-document.addEventListener('mousemove', e => { cur.style.left = (e.clientX-3)+'px'; cur.style.top = (e.clientY-3)+'px'; });
+(function(){
+  'use strict';
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-// reveal
-const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  /* ---------- guide + rail ---------- */
+  var guide=document.getElementById('guide'),
+      fill=document.getElementById('railFill'),
+      label=document.getElementById('guideLabel'),
+      tint=document.getElementById('tint'),
+      logo=document.querySelector('.bar .logo'),
+      stopsWrap=document.getElementById('railStops'),
+      forms={coin:document.getElementById('fCoin'),cursor:document.getElementById('fCursor'),
+             eagle:document.getElementById('fEagle'),mono:document.getElementById('fMono')},
+      zones=[
+        {id:'hero',   form:'coin',  label:'insert coin', color:'#E0A82E', tint:'rgba(224,168,46,0.05)'},
+        {id:'arrise', form:'coin',  label:'zone 01',     color:'#E0A82E', tint:'rgba(224,168,46,0.07)'},
+        {id:'g2w',    form:'cursor',label:'zone 02',     color:'#FF3E8A', tint:'rgba(255,62,138,0.06)'},
+        {id:'ubi',    form:'eagle', label:'zone 03',     color:'#6FD3E8', tint:'rgba(111,211,232,0.06)'},
+        {id:'skills', form:'eagle', label:'loadout',     color:'#6FD3E8', tint:'rgba(111,211,232,0.045)'},
+        {id:'about',  form:'mono',  label:'profile',     color:'#EDEAE3', tint:'rgba(237,234,227,0.03)'},
+        {id:'contact',form:'mono',  label:'landed',      color:'#E0A82E', tint:'rgba(224,168,46,0.06)'}
+      ],
+      stopEls=[];
 
-// skill bars
-const bobs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.style.animationPlayState='running'; }), {threshold:0.3});
-document.querySelectorAll('.bar-fill').forEach(b => { b.style.animationPlayState='paused'; bobs.observe(b); });
+  zones.forEach(function(){
+    var d=document.createElement('i');d.className='stop';stopsWrap.appendChild(d);stopEls.push(d);
+  });
+
+  function paint(){
+    var doc=document.documentElement,
+        max=doc.scrollHeight-window.innerHeight,
+        p=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0,
+        h=window.innerHeight;
+    guide.style.transform='translateY('+(p*(h-64)+32)+'px)';
+    fill.style.height=(p*h)+'px';
+
+    var active=zones[0];
+    zones.forEach(function(z,i){
+      var el=document.getElementById(z.id);
+      if(!el)return;
+      var r=el.getBoundingClientRect(),
+          mid=(r.top+r.height/2)/h;
+      stopEls[i].style.top=(Math.min(.97,Math.max(.03,mid))*h)+'px';
+      stopEls[i].classList.toggle('hit', r.top<h*.6 && r.bottom>h*.25);
+      if(r.top<=h*.5) active=z;
+    });
+
+    for(var k in forms){forms[k].setAttribute('opacity',k===active.form?'1':'0');}
+    label.textContent=active.label;
+    label.style.color=active.color;
+    document.documentElement.style.setProperty('--accent',active.color);
+    document.documentElement.style.setProperty('--zone-tint',active.tint);
+    if(logo)logo.style.color=active.color;
+  }
+  var tick=false;
+  function onScroll(){if(tick)return;tick=true;requestAnimationFrame(function(){paint();tick=false;});}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll);
+  paint();
+
+  /* ---------- reveals + device triggers ---------- */
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.classList.add('in');
+      if(e.target.id==='reelMachine')e.target.classList.add('spin');
+      if(e.target.id==='kanban')e.target.classList.add('play');
+      if(e.target.id==='console')e.target.classList.add('play');
+      if(e.target.id==='syncbar')e.target.classList.add('play');
+      io.unobserve(e.target);
+    });
+  },{threshold:.25});
+  document.querySelectorAll('.rv,#reelMachine,#kanban,#console,#syncbar').forEach(function(el){io.observe(el);});
+
+  /* ---------- hero counters ---------- */
+  function runCounters(){
+    document.querySelectorAll('.hs-num').forEach(function(el){
+      var target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||'0',10),
+          suf=el.dataset.suffix||'',t0=null,dur=reduce?1:1400;
+      function step(t){
+        if(!t0)t0=t;
+        var k=Math.min(1,(t-t0)/dur);k=1-Math.pow(1-k,3);
+        el.textContent=(target*k).toFixed(dec)+suf;
+        if(k<1)requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+  runCounters();
+
+  /* ---------- hash-routed detail views ---------- */
+  var pages={
+    'titles/ac-nexus-vr':{c:'#6FD3E8',k:'Ubisoft · VR · 2023',t:"Assassin's Creed Nexus VR",
+      r:'QA & Requirements · Online Requirements Project Specialist',
+      stats:[['98%','Bug ID rate'],['VR','First-person production'],['8–10','QA team supervised']],
+      body:['<h3>The brief</h3><p>Ubisoft’s flagship VR entry in the Assassin’s Creed line — a first-person production where a missed defect isn’t a visual glitch, it’s motion sickness. QA rigour was a shipping requirement, not a checkbox.</p>',
+      '<h3>What I owned</h3><ul><li>Cross-team testing pipelines spanning VR-specific comfort, interaction and traversal cases</li><li>Requirement documentation keeping delivery integrity across a complex production</li><li>Coordination between QA and development through milestone crunch windows</li></ul>',
+      '<a class="dv-link" href="https://www.ubisoft.com/en-us/game/assassins-creed/nexus-vr" target="_blank" rel="noopener">Official page ↗</a>']},
+    'titles/for-honor':{c:'#E8B44A',k:'Ubisoft · Live service',t:'For Honor',
+      r:'QA Coordination & Project Documentation',
+      stats:[['−25%','Test-cycle redundancy'],['Seasonal','Content cadence'],['Live','Service ops']],
+      body:['<h3>The brief</h3><p>A live-service melee title with a seasonal content engine that never stops. The QA challenge isn’t one launch — it’s staying green through every patch, season and balance pass.</p>',
+      '<h3>What I owned</h3><ul><li>Ongoing test cycles and bug tracking across long-running seasonal updates</li><li>Alignment between QA and development teams through repeated content drops</li><li>Test plans that cut cycle redundancy by 25%</li></ul>',
+      '<a class="dv-link" href="https://www.ubisoft.com/en-au/game/for-honor" target="_blank" rel="noopener">Official page ↗</a>']},
+    'titles/xdefiant':{c:'#FF6B4A',k:'Ubisoft · F2P FPS · Launch',t:'XDefiant',
+      r:'QA Pipeline · Test Plan Documentation',
+      stats:[['F2P','Launch title'],['AAA','Production scale'],['Milestones','Through live launch']],
+      body:['<h3>The brief</h3><p>A free-to-play arena FPS heading to a live launch — the highest-pressure kind of milestone schedule, where every build has to be certifiable and every regression is public.</p>',
+      '<h3>What I owned</h3><ul><li>Test plan documentation across development milestones up to live launch</li><li>Cross-team coordination between QA pods and feature teams</li></ul>',
+      '<a class="dv-link" href="https://www.ubisoft.com/en-gb/game/xdefiant" target="_blank" rel="noopener">Official page ↗</a>']},
+    'titles/just-dance-2023':{c:'#C77DFF',k:'Ubisoft · Multi-title',t:'Just Dance 2023 & Oddballers',
+      r:'Parallel QA & Requirements Delivery',
+      stats:[['2','Titles in parallel'],['1','Sprint cycle'],['2','Genres apart']],
+      body:['<h3>The brief</h3><p>Two completely different productions — a rhythm juggernaut and a party brawler — running through the same sprint cycle. The test of a coordinator isn’t one pipeline; it’s context-switching between two without dropping either.</p>',
+      '<h3>What I owned</h3><ul><li>Simultaneous QA and requirements delivery across both titles</li><li>Genre-appropriate test coverage within shared sprint capacity</li></ul>',
+      '<a class="dv-link" href="https://www.ubisoft.com/en-gb/game/just-dance/2023" target="_blank" rel="noopener">Official page ↗</a>']},
+    'studios/arrise':{c:'#E0A82E',k:'ARRISE / Pragmatic Play · 2024—now',t:'The 500-Title Programme',
+      r:'Project & Program Management Coordinator',
+      stats:[['500+','Titles shipped'],['95%','On-time'],['−30%','Delays'],['−40%','Incident time']],
+      body:['<h3>The machine</h3><p>Slots and Virtual Sports at Pragmatic Play volume: a delivery machine that takes a title from ideation and bespoke tailoring through pre-production, sprint execution, QA, stakeholder reporting and live release — then does it again, five hundred times, on schedule.</p>',
+      '<h3>What I run</h3><ul><li>Jira Work Management standardised org-wide for end-to-end workflow visibility</li><li>20+ high-impact risks and dependencies mitigated — 30% fewer project delays</li><li>Daily Scrum + sprint planning: +20% velocity, −15% scope creep</li><li>Incident response coordination: −40% average resolution time, +18% throughput via new prioritisation workflow</li><li>Feature alignment with Product so every build meets functional and business expectations</li></ul>',
+      '<a class="dv-link" href="https://www.pragmaticplay.com/en/games/" target="_blank" rel="noopener">Pragmatic Play games ↗</a>']},
+    'studios/games2win':{c:'#FF3E8A',k:'Games2win · 2023—2024',t:'The Tracking Programme',
+      r:'Project Event Analyst',
+      stats:[['30+','Trackers shipped'],['475M+','Publisher downloads'],['+40%','Data reliability'],['+12%','Session duration']],
+      body:['<h3>The machine</h3><p>A mobile publisher measured in hundreds of millions of installs, where product decisions live or die on event data. I built the layer that made that data trustworthy.</p>',
+      '<h3>What I ran</h3><ul><li>30+ structured feature-tracking frameworks, designed and validated</li><li>50+ tracking inconsistencies resolved through structured validation cycles</li><li>Friction analysis that drove UI/UX changes: +12% session duration, −18% bounce</li><li>Sprint planning and backlog grooming with Product & Design, teams of 6–10</li></ul>',
+      '<a class="dv-link" href="https://play.google.com/store/apps/developer?id=Games2win.com&hl=en_IN" target="_blank" rel="noopener">Games2win on Google Play ↗</a>']}
+  };
+
+  var detail=document.getElementById('detail'),
+      dvContent=document.getElementById('dvContent'),
+      dvBack=document.getElementById('dvBack');
+
+  function route(){
+    var h=location.hash.replace(/^#\/?/,'');
+    var page=pages[h];
+    if(page){
+      var html='<div class="dv-kicker">'+page.k+'</div><h1>'+page.t+'</h1><div class="dv-role">'+page.r+'</div>';
+      html+='<div class="dv-stats">'+page.stats.map(function(s){return '<div><div class="v">'+s[0]+'</div><div class="l">'+s[1]+'</div></div>';}).join('')+'</div>';
+      html+=page.body.join('');
+      dvContent.innerHTML=html;
+      detail.style.setProperty('--dvc',page.c);
+      detail.classList.add('open');
+      detail.scrollTop=0;
+      document.body.style.overflow='hidden';
+      dvBack.focus();
+    }else{
+      detail.classList.remove('open');
+      document.body.style.overflow='';
+    }
+  }
+  dvBack.addEventListener('click',function(){
+    if(history.length>1)history.back();else location.hash='';
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&detail.classList.contains('open')){
+      if(history.length>1)history.back();else location.hash='';
+    }
+  });
+  window.addEventListener('hashchange',route);
+  route();
+})();
 </script>
 </body>
 </html>
