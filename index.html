@@ -191,9 +191,9 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .reel .cell .l{font-family:var(--f-mono);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-top:2px;}
 .reel .cell .sym{font-size:1.6rem;opacity:.4;}
 @keyframes reelSpin{from{transform:translateY(0)}to{transform:translateY(-600px)}}
-.reel-machine.spin .strip{animation:reelSpin .9s cubic-bezier(.2,.9,.3,1) forwards;}
-.reel-machine.spin .r2 .strip{animation-duration:1.35s;}
-.reel-machine.spin .r3 .strip{animation-duration:1.8s;}
+.reel-machine.spin .strip{animation:reelSpin 3.2s cubic-bezier(.25,.1,.25,.1) infinite;}
+.reel-machine.spin .r2 .strip{animation-duration:3.6s;}
+.reel-machine.spin .r3 .strip{animation-duration:4.1s;}
 .payline{height:1px;background:rgba(224,168,46,.5);position:absolute;left:22px;right:22px;top:50%;transform:translateY(-50%);z-index:3;pointer-events:none;
   box-shadow:0 0 12px rgba(224,168,46,.5);opacity:0;transition:opacity .4s 1.9s;}
 .reel-wrap{position:relative;}
