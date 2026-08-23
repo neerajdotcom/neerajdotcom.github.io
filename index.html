@@ -58,12 +58,13 @@ img{max-width:100%;}
   background:radial-gradient(120% 100% at 30% 0%,var(--zone-tint),transparent 62%);
   transition:background 1.2s ease;}
 
-/* zone background visuals */
-.zone::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;
-  opacity:.04;background-size:cover;background-position:center;}
-#arrise::before{background-image:linear-gradient(135deg,#E0A82E 0%,#2A1B3D 100%);}
-#g2w::before{background-image:repeating-linear-gradient(90deg,#FF3E8A 0px,#1A0714 2px,#FF3E8A 4px);}
-#ubi::before{background-image:repeating-linear-gradient(45deg,#6FD3E8 0px,#07131A 2px,#6FD3E8 4px);}
+/* zone background visuals — gradient fade, no hard edges */
+.zone::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;
+  opacity:0;transition:opacity .8s ease;}
+#arrise::before{background:radial-gradient(ellipse at 20% 50%,rgba(224,168,46,0.08),transparent 60%);}
+#g2w::before{background:radial-gradient(ellipse at 30% 40%,rgba(255,62,138,0.08),transparent 55%);}
+#ubi::before{background:radial-gradient(ellipse at 40% 60%,rgba(111,211,232,0.08),transparent 50%);}
+.zone:target::before{opacity:1;}
 /* faint static grain */
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");}
@@ -199,7 +200,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .reel-machine.spin .strip{animation:reelSpin .9s cubic-bezier(.2,.9,.3,1) forwards;}
 .reel-machine.spin .r2 .strip{animation-duration:1.35s;}
 .reel-machine.spin .r3 .strip{animation-duration:1.8s;}
-.payline{height:1px;background:rgba(224,168,46,.5);position:absolute;left:22px;right:22px;top:50%;z-index:3;pointer-events:none;
+.payline{height:1px;background:rgba(224,168,46,.5);position:absolute;left:22px;right:22px;top:50%;transform:translateY(-50%);z-index:3;pointer-events:none;
   box-shadow:0 0 12px rgba(224,168,46,.5);opacity:0;transition:opacity .4s 1.9s;}
 .reel-wrap{position:relative;}
 .reel-machine.spin ~ .payline{opacity:1;}
