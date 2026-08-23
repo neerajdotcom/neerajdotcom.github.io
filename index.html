@@ -266,6 +266,49 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .syncbar.play .n2{opacity:1;transition-delay:1.1s}
 .syncbar.play .n3{opacity:1;transition-delay:1.7s}
 
+/* FPS shooter visualization */
+@keyframes crosshairPulse{0%{transform:scale(1)}50%{transform:scale(.85)}100%{transform:scale(1)}}
+@keyframes gunRecoil{0%{transform:translateY(0)}40%{transform:translateY(-3px)}100%{transform:translateY(0)}}
+@keyframes bulletFade{0%{opacity:1}100%{opacity:0}}
+.fps-view{display:flex;align-items:center;justify-content:center;min-height:200px;
+  position:relative;background:linear-gradient(135deg,rgba(111,211,232,.05),rgba(224,168,46,.02));
+  overflow:hidden;}
+.fps-crosshair{position:absolute;width:40px;height:40px;border:1px solid var(--cyan);
+  border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);
+  pointer-events:none;}
+.fps-crosshair::before,.fps-crosshair::after{content:'';position:absolute;
+  background:var(--cyan);top:50%;left:50%;transform:translate(-50%,-50%);}
+.fps-crosshair::before{width:8px;height:1px;}
+.fps-crosshair::after{width:1px;height:8px;}
+.fps-weapon{position:absolute;bottom:0;right:20px;width:60px;height:80px;
+  background:linear-gradient(135deg,#FFE0B2,#FF9800);border:1px solid var(--grey-dim);
+  border-radius:3px;opacity:.7;}
+.fps-ammo{position:absolute;bottom:20px;left:20px;font-family:var(--f-mono);
+  font-size:.68rem;letter-spacing:.1em;color:var(--cyan);text-transform:uppercase;}
+.fps-ammo .rounds{color:var(--accent);font-weight:600;font-variant-numeric:tabular-nums;}
+.fps-view.play .fps-crosshair{animation:crosshairPulse .3s ease-in-out infinite;}
+.fps-view.play .fps-weapon{animation:gunRecoil .15s ease-out;}
+
+/* Mobile car racing visualization */
+@keyframes carDrive{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+@keyframes roadScroll{0%{background-position:0 0}100%{background-position:0 40px}}
+.car-race{display:flex;align-items:center;justify-content:center;min-height:200px;
+  position:relative;overflow:hidden;background:linear-gradient(180deg,#87CEEB,#E8B44A);}
+.car-road{position:absolute;inset:0;width:100%;height:100%;
+  background:linear-gradient(180deg,
+    #444 0%,#444 15px,#FFD700 15px,#FFD700 17px,#444 17px,
+    #444 32px,transparent 32px,transparent 100%);
+  background-size:100% 40px;animation:roadScroll .8s linear infinite;}
+.car-body{position:absolute;bottom:35%;left:50%;transform:translateX(-50%);
+  width:50px;height:30px;background:linear-gradient(135deg,#FF6B4A,#FF4444);
+  border-radius:4px 4px 2px 2px;z-index:2;animation:carDrive 1.4s ease-in-out infinite;}
+.car-wheel{position:absolute;bottom:32%;width:8px;height:8px;
+  background:#333;border-radius:50%;z-index:1;}
+.car-wheel.left{left:calc(50% - 18px)}
+.car-wheel.right{left:calc(50% + 18px)}
+.car-race.play .car-body{animation:carDrive 1.4s ease-in-out infinite;}
+.car-race.play .car-road{animation:roadScroll .8s linear infinite;}
+
 /* title cards */
 .titles{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;
   background:var(--line);border:1px solid var(--line);margin-top:44px;}
@@ -580,17 +623,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 
   <div class="zgrid">
     <div class="panel rv d1">
-      <div class="p-head"><span>DEVICE · EVENT_STREAM.LOG</span><b>prints on view</b></div>
-      <div class="console" id="console">
-        <span class="ln l1"><span class="ts">[00:00.412]</span> <span class="ev">session_start</span> {platform:"android", src:"organic"}</span>
-        <span class="ln l2"><span class="ts">[00:03.108]</span> <span class="ev">level_start</span> {id:12, mode:"career"}</span>
-        <span class="ln l3"><span class="ts">[00:41.966]</span> <span class="ev">level_fail</span> {id:12, at:"checkpoint_3"}</span>
-        <span class="ln l4"><span class="ts">[00:42.301]</span> <span class="ev">friction_flag</span> → routed to UI/UX review</span>
-        <span class="ln l5"><span class="ts">[00:44.870]</span> <span class="ev">retry_tap</span> {latency_ms:2569}</span>
-        <span class="ln l6"><span class="ts">[01:02.114]</span> <span class="ev">iap_view</span> {sku:"booster_s"}</span>
-        <span class="ln l7"><span class="ts">[01:12.400]</span> <span class="ok">✓ validation pass</span> — tracker 27/30 consistent</span>
-        <span class="ln l8"><span class="ts">[01:12.402]</span> <span class="ok">✓ session +12% duration · bounce −18%</span></span>
-        <span class="ln l9"><span class="ts">[01:12.403]</span> awaiting next event <span class="cursor-block"></span></span>
+      <div class="p-head"><span>DEVICE · MOBILE RACER</span><b>full throttle</b></div>
+      <div class="car-race" id="carRace">
+        <div class="car-road"></div>
+        <div class="car-body"></div>
+        <div class="car-wheel left"></div>
+        <div class="car-wheel right"></div>
       </div>
     </div>
 
@@ -643,15 +681,12 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
 
   <div class="zgrid">
     <div class="panel rv d1">
-      <div class="p-head"><span>DEVICE · SYNCHRONISATION</span><b>bug identification</b></div>
-      <div class="syncbar" id="syncbar">
-        <div class="sb-top"><span>Memory integrity · 5 titles</span><b>98% SYNC</b></div>
-        <div class="sb-track"><div class="sb-fill"></div></div>
-        <div class="sb-notes">
-          <span class="n1">✓ 98% bug identification &amp; resolution rate across team of 8–10</span>
-          <span class="n2">✓ test-cycle redundancy −25% via requirement analysis &amp; test plans</span>
-          <span class="n3">✓ onboarding time −30% via documentation framework</span>
-        </div>
+      <div class="p-head"><span>DEVICE · AAA FPS</span><b>combat ready</b></div>
+      <div class="fps-view" id="fpsView">
+        <div class="fps-road"></div>
+        <div class="fps-crosshair"></div>
+        <div class="fps-weapon"></div>
+        <div class="fps-ammo"><span class="rounds">32</span> / 256</div>
       </div>
     </div>
 
@@ -938,19 +973,21 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
       e.target.classList.add('in');
       if(e.target.id==='reelMachine')e.target.classList.add('spin');
       if(e.target.id==='kanban')e.target.classList.add('play');
-      if(e.target.id==='console')e.target.classList.add('play');
-      if(e.target.id==='syncbar')e.target.classList.add('play');
+      if(e.target.id==='carRace')e.target.classList.add('play');
+      if(e.target.id==='fpsView')e.target.classList.add('play');
       io.unobserve(e.target);
     });
   },{threshold:.25});
-  document.querySelectorAll('.rv,#reelMachine,#kanban,#console,#syncbar').forEach(function(el){io.observe(el);});
+  document.querySelectorAll('.rv,#reelMachine,#kanban,#carRace,#fpsView').forEach(function(el){io.observe(el);});
 
   /* ---------- scroll-triggered number animations ---------- */
   var numObs=new IntersectionObserver(function(entries){
     entries.forEach(function(e){
       if(e.isIntersecting){
         e.target.classList.add('animating');
+        e.target.style.animationPlayState='running';
       }else{
+        e.target.style.animationPlayState='paused';
         e.target.classList.remove('animating');
       }
     });
