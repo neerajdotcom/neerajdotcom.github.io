@@ -269,12 +269,17 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 @keyframes fpsRecoil{0%,88%,100%{transform:none}92%{transform:translateY(8px) scaleY(0.96)}}
 @keyframes fpsFlash{0%,90%,100%{opacity:0}92%{opacity:1}}
 @keyframes fpsHit{0%,90%{opacity:0;transform:scale(.4)}94%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
+@keyframes enemyShot{0%,90%{opacity:.6}92%{opacity:.2}100%{opacity:.6}}
 @keyframes fpsAmmo{0%,89%{opacity:1}91%{opacity:.25}100%{opacity:1}}
 .fps-view{position:relative;height:220px;overflow:hidden;
   background:linear-gradient(180deg,#0d1b24 0%,#12252f 55%,#0a141b 100%);}
 .fps-view::before{content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(90deg,rgba(111,211,232,.07) 0 1px,transparent 1px 46px),
              repeating-linear-gradient(180deg,rgba(111,211,232,.07) 0 1px,transparent 1px 46px);}
+.fps-enemy{position:absolute;width:50px;height:80px;background:linear-gradient(90deg,#1a3a4a,#0f2535);border:1px solid rgba(111,211,232,.4);border-radius:4px 4px 8px 8px;opacity:.6;transition:opacity .2s;}
+.fps-enemy::before{content:'';position:absolute;top:8px;left:50%;width:20px;height:20px;margin-left:-10px;border:2px solid rgba(111,211,232,.5);border-radius:50%;}
+.fps-enemy.left{left:12%;top:50%;transform:translateY(-50%);}
+.fps-enemy.right{right:12%;top:50%;transform:translateY(-50%);}
 .fps-target{position:absolute;left:50%;top:40%;width:40px;height:70px;margin-left:-20px;
   background:linear-gradient(180deg,#2c4a58,#1b3038);border:2px solid rgba(111,211,232,.6);border-radius:4px 4px 0 0;}
 .fps-hit{position:absolute;left:50%;top:48%;width:20px;height:20px;margin:-10px 0 0 -10px;
@@ -300,6 +305,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .fps-view.play .fps-flash{animation:fpsFlash 2.6s ease-in-out infinite;}
 .fps-view.play .fps-hit{animation:fpsHit 2.6s ease-in-out infinite;}
 .fps-view.play .fps-hud b{animation:fpsAmmo 2.6s ease-in-out infinite;}
+.fps-view.play .fps-enemy{animation:enemyShot 2.6s ease-in-out infinite;}
 
 /* Mobile racer — Games2Win zone */
 @keyframes roadRush{from{background-position:0 0}to{background-position:0 120px}}
@@ -707,6 +713,8 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
     <div class="panel rv d1">
       <div class="p-head"><span>DEVICE · AAA FPS</span><b>combat ready</b></div>
       <div class="fps-view" id="fpsView">
+        <div class="fps-enemy left"></div>
+        <div class="fps-enemy right"></div>
         <div class="fps-target"></div>
         <div class="fps-hit"></div>
         <div class="fps-cross"><span></span><span></span><span></span><span></span></div>
