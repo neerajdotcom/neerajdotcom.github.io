@@ -178,7 +178,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
 
 /* ============ ZONE 1 · ARRISE — gold ============ */
-#arrise{--zcolor:var(--gold);background:radial-gradient(180% 140% at 50% -20%,rgba(224,168,46,0.04),transparent 85%);}
+#arrise{--zcolor:var(--gold);background:radial-gradient(220% 160% at 50% -40%,rgba(224,168,46,0.015),transparent 90%);}
 /* the reel machine */
 .reel-machine{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:22px;}
 .reel{background:var(--ink);border:1px solid rgba(224,168,46,.35);height:120px;
@@ -226,7 +226,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .morph-band svg{width:130px;height:34px;flex:none;overflow:visible;}
 
 /* ============ ZONE 2 · GAMES2WIN — magenta ============ */
-#g2w{--zcolor:var(--magenta);background:radial-gradient(180% 140% at 50% -20%,rgba(255,62,138,0.03),transparent 85%);}
+#g2w{--zcolor:var(--magenta);background:radial-gradient(220% 160% at 50% -40%,rgba(255,62,138,0.012),transparent 90%);}
 .console{background:var(--ink);font-family:var(--f-mono);font-size:.68rem;line-height:1.9;
   padding:18px 20px;min-height:230px;color:var(--soft);letter-spacing:.02em;}
 .console .ln{opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;display:block;}
@@ -244,7 +244,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .cursor-block{animation:cblink 1s steps(1) infinite;}
 
 /* ============ ZONE 3 · UBISOFT — cyan ============ */
-#ubi{--zcolor:var(--cyan);background:radial-gradient(180% 140% at 50% -20%,rgba(111,211,232,0.03),transparent 85%);}
+#ubi{--zcolor:var(--cyan);background:radial-gradient(220% 160% at 50% -40%,rgba(111,211,232,0.012),transparent 90%);}
 /* sync bar (boss-bar device) */
 .syncbar{padding:22px;}
 .syncbar .sb-top{display:flex;justify-content:space-between;font-family:var(--f-mono);
@@ -266,7 +266,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 /* FPS shooter visualization */
 /* FPS shooter — Ubisoft AAA zone */
 @keyframes fpsSway{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-54%)}}
-@keyframes fpsRecoil{0%,88%,100%{transform:none}92%{transform:translateY(8px) scaleY(0.96)}}
+@keyframes fpsRecoil{0%,88%,100%{transform:rotate(-20deg)}92%{transform:rotate(-20deg) translateY(8px) scaleY(0.96)}}
 @keyframes fpsFlash{0%,90%,100%{opacity:0}92%{opacity:1}}
 @keyframes fpsHit{0%,90%{opacity:0;transform:scale(.4)}94%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
 @keyframes enemyShot{0%,90%{opacity:.6}92%{opacity:.2}100%{opacity:.6}}
@@ -276,8 +276,8 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .fps-view::before{content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(90deg,rgba(111,211,232,.07) 0 1px,transparent 1px 46px),
              repeating-linear-gradient(180deg,rgba(111,211,232,.07) 0 1px,transparent 1px 46px);}
-.fps-enemy{position:absolute;width:50px;height:80px;background:linear-gradient(90deg,#1a3a4a,#0f2535);border:1px solid rgba(111,211,232,.4);border-radius:4px 4px 8px 8px;opacity:.6;transition:opacity .2s;}
-.fps-enemy::before{content:'';position:absolute;top:8px;left:50%;width:20px;height:20px;margin-left:-10px;border:2px solid rgba(111,211,232,.5);border-radius:50%;}
+.fps-enemy{position:absolute;width:50px;height:80px;background:linear-gradient(90deg,#2d5a6f,#1a3a4a);border:2px solid rgba(111,211,232,.7);border-radius:4px 4px 8px 8px;opacity:.85;transition:opacity .2s;box-shadow:0 0 12px rgba(111,211,232,.3);}
+.fps-enemy::before{content:'';position:absolute;top:8px;left:50%;width:20px;height:20px;margin-left:-10px;border:2px solid rgba(111,211,232,.8);border-radius:50%;box-shadow:inset 0 0 6px rgba(111,211,232,.4);}
 .fps-enemy.left{left:12%;top:50%;transform:translateY(-50%);}
 .fps-enemy.right{right:12%;top:50%;transform:translateY(-50%);}
 .fps-target{position:absolute;left:50%;top:40%;width:40px;height:70px;margin-left:-20px;
