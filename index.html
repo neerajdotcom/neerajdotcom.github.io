@@ -53,7 +53,14 @@ a{color:var(--accent);}
 img{max-width:100%;}
 ::selection{background:var(--accent);color:var(--ink);}
 
-/* zone tint layer — soft crossfade between industries */
+/* zone tint layer — soft crossfade between industries.
+   THIS IS THE ONLY PLACE ZONE COLOUR IS PAINTED. It is position:fixed and
+   viewport-sized, so it has no edges to cut against; the JS at the bottom
+   swaps --zone-tint per zone and the transition crossfades it.
+   Never put `background:` on .zone / #arrise / #g2w / #ubi — a gradient on a
+   section is clipped to that section's box, so it terminates dead at the
+   section boundary and reads as a rectangular cutout. Lowering its opacity
+   only makes a fainter cutout; the edge is still an edge. */
 #tint{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(140% 120% at 25% 0%,var(--zone-tint),transparent 75%);
   filter:blur(3px);
@@ -178,7 +185,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
 
 /* ============ ZONE 1 · ARRISE — gold ============ */
-#arrise{--zcolor:var(--gold);background:radial-gradient(220% 160% at 50% -40%,rgba(224,168,46,0.015),transparent 90%);}
+#arrise{--zcolor:var(--gold);}
 /* the reel machine */
 .reel-machine{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:22px;}
 .reel{background:var(--ink);border:1px solid rgba(224,168,46,.35);height:120px;
@@ -226,7 +233,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .morph-band svg{width:130px;height:34px;flex:none;overflow:visible;}
 
 /* ============ ZONE 2 · GAMES2WIN — magenta ============ */
-#g2w{--zcolor:var(--magenta);background:radial-gradient(220% 160% at 50% -40%,rgba(255,62,138,0.012),transparent 90%);}
+#g2w{--zcolor:var(--magenta);}
 .console{background:var(--ink);font-family:var(--f-mono);font-size:.68rem;line-height:1.9;
   padding:18px 20px;min-height:230px;color:var(--soft);letter-spacing:.02em;}
 .console .ln{opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;display:block;}
@@ -244,7 +251,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .cursor-block{animation:cblink 1s steps(1) infinite;}
 
 /* ============ ZONE 3 · UBISOFT — cyan ============ */
-#ubi{--zcolor:var(--cyan);background:radial-gradient(220% 160% at 50% -40%,rgba(111,211,232,0.012),transparent 90%);}
+#ubi{--zcolor:var(--cyan);}
 /* sync bar (boss-bar device) */
 .syncbar{padding:22px;}
 .syncbar .sb-top{display:flex;justify-content:space-between;font-family:var(--f-mono);
