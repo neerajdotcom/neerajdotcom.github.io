@@ -224,7 +224,10 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .kanban.play .t7{transition-delay:1.6s}.kanban.play .t8{transition-delay:1.85s}
 
 /* ============ MORPH BAND ============ */
-.morph-band{padding:12vh 0;text-align:left;background:radial-gradient(140% 100% at 50% 0%,rgba(0,0,0,0.3),transparent 70%);}
+/* No background here — same rule as the zones above: a gradient on this box is
+   clipped to it, and the 9vh padding is empty, so it renders as a bare dark
+   rectangle floating above the rule. The band is just the two rules + label. */
+.morph-band{padding:9vh 0;text-align:left;}
 .morph-band .mb-inner{border-top:2px solid var(--line);border-bottom:2px solid var(--line);
   padding:36px 0;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
 .morph-band .mline{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.2em;
