@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Neeraj Banerjee — The Morph Run</title>
-<meta name="description" content="Production · Project · Program Management. 5+ years shipping games across iGaming, mobile and AAA — told as one continuous run.">
+<meta name="description" content="5+ years running delivery pipelines. One career, three zones, one guide that morphs.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
@@ -57,7 +57,7 @@ img{max-width:100%;}
 #tint{position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(140% 120% at 25% 0%,var(--zone-tint),transparent 75%);
   filter:blur(3px);
-  transition:background 1.2s ease;}
+  transition:background .8s ease;}
 
 /* faint static grain */
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.3;
@@ -80,8 +80,8 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;opac
 #guide{position:absolute;left:50%;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;
   transition:transform .16s ease-out;will-change:transform;}
 #guide svg{width:100%;height:100%;overflow:visible;display:block;
-  filter:drop-shadow(0 0 8px rgba(0,0,0,.6));}
-#guide g{transition:opacity .5s ease;}
+  filter:drop-shadow(0 0 12px rgba(0,0,0,.8));}
+#guide g{transition:opacity .4s ease;}
 #guideLabel{position:absolute;left:50%;transform:translate(-50%,30px);
   font-family:var(--f-mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--grey);white-space:nowrap;transition:color .5s;}
@@ -178,7 +178,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
 
 /* ============ ZONE 1 · ARRISE — gold ============ */
-#arrise{--zcolor:var(--gold);}
+#arrise{--zcolor:var(--gold);background:radial-gradient(140% 120% at 50% 0%,rgba(224,168,46,0.08),transparent 80%);}
 /* the reel machine */
 .reel-machine{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:22px;}
 .reel{background:var(--ink);border:1px solid rgba(224,168,46,.35);height:120px;
@@ -218,16 +218,16 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .kanban.play .t7{transition-delay:1.6s}.kanban.play .t8{transition-delay:1.85s}
 
 /* ============ MORPH BAND ============ */
-.morph-band{padding:9vh 0;text-align:left;}
-.morph-band .mb-inner{border-top:1px dashed var(--line);border-bottom:1px dashed var(--line);
-  padding:26px 0;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+.morph-band{padding:12vh 0;text-align:left;background:radial-gradient(140% 100% at 50% 0%,rgba(0,0,0,0.3),transparent 70%);}
+.morph-band .mb-inner{border-top:2px solid var(--line);border-bottom:2px solid var(--line);
+  padding:36px 0;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
 .morph-band .mline{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.2em;
   text-transform:uppercase;color:var(--grey);}
 .morph-band .mline b{font-weight:500;}
 .morph-band svg{width:130px;height:34px;flex:none;overflow:visible;}
 
 /* ============ ZONE 2 · GAMES2WIN — magenta ============ */
-#g2w{--zcolor:var(--magenta);}
+#g2w{--zcolor:var(--magenta);background:radial-gradient(140% 120% at 50% 0%,rgba(255,62,138,0.07),transparent 80%);}
 .console{background:var(--ink);font-family:var(--f-mono);font-size:.68rem;line-height:1.9;
   padding:18px 20px;min-height:230px;color:var(--soft);letter-spacing:.02em;}
 .console .ln{opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s;display:block;}
@@ -245,7 +245,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .cursor-block{animation:cblink 1s steps(1) infinite;}
 
 /* ============ ZONE 3 · UBISOFT — cyan ============ */
-#ubi{--zcolor:var(--cyan);}
+#ubi{--zcolor:var(--cyan);background:radial-gradient(140% 120% at 50% 0%,rgba(111,211,232,0.07),transparent 80%);}
 /* sync bar (boss-bar device) */
 .syncbar{padding:22px;}
 .syncbar .sb-top{display:flex;justify-content:space-between;font-family:var(--f-mono);
