@@ -266,7 +266,7 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 /* FPS shooter visualization */
 /* FPS shooter — Ubisoft AAA zone */
 @keyframes fpsSway{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-54%)}}
-@keyframes fpsRecoil{0%,88%,100%{transform:none}92%{transform:translateY(8px) scaleY(0.96)}}
+@keyframes fpsRecoil{0%,88%,100%{transform:rotate(-20deg)}92%{transform:rotate(-20deg) translateY(8px) scaleY(0.96)}}
 @keyframes fpsFlash{0%,90%,100%{opacity:0}92%{opacity:1}}
 @keyframes fpsHit{0%,90%{opacity:0;transform:scale(.4)}94%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
 @keyframes enemyShot{0%,90%{opacity:.6}92%{opacity:.2}100%{opacity:.6}}
