@@ -274,14 +274,64 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .syncbar.play .n3{opacity:1;transition-delay:1.7s}
 
 /* FPS shooter visualization */
-/* FPS shooter — Ubisoft AAA zone */
-@keyframes fpsSway{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-54%)}}
-@keyframes fpsRecoil{0%,88%,100%{transform:none}92%{transform:translateY(9px) scaleY(.97)}}
-@keyframes fpsFlash{0%,90%,100%{opacity:0}92%{opacity:1}}
-@keyframes fpsTracer{0%,90%{opacity:0}92%{opacity:.95}95%,100%{opacity:0}}
-@keyframes fpsHit{0%,90%{opacity:0;transform:scale(.4)}94%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
-@keyframes enemyShot{0%,90%{opacity:.6}92%{opacity:.2}100%{opacity:.6}}
-@keyframes fpsAmmo{0%,89%{opacity:1}91%{opacity:.25}100%{opacity:1}}
+/* FPS shooter — Ubisoft AAA zone.
+   One 7.8s cycle, three shots: CENTER target (0–33.33%), LEFT dummy
+   (33.33–66.67%), RIGHT dummy (66.67–100%). #fps-turret is the part that
+   rotates to aim; #fps-gun (its only child) just recoils on its own
+   transform, so rotation and recoil compose instead of fighting over the
+   same property. Flash/tracer are children of the gun and inherit both,
+   so the shot always leaves the muzzle pointed wherever the turret aimed. */
+@keyframes fpsAim{
+  0%,27%,31%{transform:rotate(0deg)}
+  38%,60%,64%{transform:rotate(-26deg)}
+  72%,94%,98%{transform:rotate(26deg)}
+  100%{transform:rotate(0deg)}
+}
+@keyframes fpsRecoil{
+  0%,27%,31%,60%,64%,94%,98%,100%{transform:none}
+  29%,62%,96%{transform:translateY(9px) scaleY(.97)}
+}
+@keyframes fpsFlash{
+  0%,27%,31%,60%,64%,94%,98%,100%{opacity:0}
+  29%,62%,96%{opacity:1}
+}
+@keyframes fpsTracer{
+  0%,26%,30%,58%,63%,92%,97%,100%{opacity:0}
+  28%,61%,95%{opacity:.95}
+}
+@keyframes fpsCrossAim{
+  0%,27%{left:50%;transform:translate(-50%,-50%)}
+  29%{left:50%;transform:translate(-50%,-54%)}
+  33.33%{left:50%;transform:translate(-50%,-50%)}
+  38%,60%{left:14%;transform:translate(-50%,-50%)}
+  62%{left:14%;transform:translate(-50%,-54%)}
+  66.67%{left:14%;transform:translate(-50%,-50%)}
+  72%,94%{left:86%;transform:translate(-50%,-50%)}
+  96%{left:86%;transform:translate(-50%,-54%)}
+  100%{left:50%;transform:translate(-50%,-50%)}
+}
+@keyframes fpsHitCenter{
+  0%,27%{opacity:0;transform:scale(.4)}
+  30%{opacity:1;transform:scale(1)}
+  33.33%,100%{opacity:0;transform:scale(1.5)}
+}
+@keyframes fpsHitLeft{
+  0%,60%{opacity:0;transform:translateY(-50%) scale(.4)}
+  63%{opacity:1;transform:translateY(-50%) scale(1)}
+  66.67%,100%{opacity:0;transform:translateY(-50%) scale(1.5)}
+}
+@keyframes fpsHitRight{
+  0%,94%{opacity:0;transform:translateY(-50%) scale(.4)}
+  97%{opacity:1;transform:translateY(-50%) scale(1)}
+  100%{opacity:0;transform:translateY(-50%) scale(1.5)}
+}
+@keyframes targetShot{0%,27%,33.33%,100%{opacity:1}30%{opacity:.55}}
+@keyframes enemyShotLeft{0%,60%,66.67%,100%{opacity:.85}63%{opacity:.3}}
+@keyframes enemyShotRight{0%,94%,100%{opacity:.85}97%{opacity:.3}}
+@keyframes fpsAmmo{
+  0%,26%,30%,59%,63%,93%,97%,100%{opacity:1}
+  28%,61%,95%{opacity:.25}
+}
 .fps-view{position:relative;height:220px;overflow:hidden;
   background:linear-gradient(180deg,#0d1b24 0%,#12252f 55%,#0a141b 100%);}
 .fps-view::before{content:'';position:absolute;inset:0;
@@ -293,39 +343,52 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .fps-enemy.right{right:12%;top:38%;transform:translateY(-50%);}
 .fps-target{position:absolute;left:50%;top:26%;width:40px;height:70px;margin-left:-20px;
   background:linear-gradient(180deg,#2c4a58,#1b3038);border:2px solid rgba(111,211,232,.6);border-radius:4px 4px 0 0;}
-.fps-hit{position:absolute;left:50%;top:34%;width:20px;height:20px;margin:-10px 0 0 -10px;
+.fps-hit{position:absolute;width:20px;height:20px;
   border:2px solid var(--cyan);border-radius:50%;opacity:0;box-shadow:0 0 8px rgba(111,211,232,.6);}
+.fps-hit-center{left:50%;top:34%;margin:-10px 0 0 -10px;}
+.fps-hit-left{left:12%;top:38%;margin-left:15px;transform:translateY(-50%);}
+.fps-hit-right{right:12%;top:38%;margin-right:15px;transform:translateY(-50%);}
 .fps-cross{position:absolute;left:50%;top:34%;width:40px;height:40px;transform:translate(-50%,-50%);}
 .fps-cross span{position:absolute;background:var(--cyan);box-shadow:0 0 8px rgba(111,211,232,.9);}
 .fps-cross span:nth-child(1){left:50%;top:0;width:2px;height:14px;margin-left:-1px;}
 .fps-cross span:nth-child(2){left:50%;bottom:0;width:2px;height:14px;margin-left:-1px;}
 .fps-cross span:nth-child(3){top:50%;left:0;width:14px;height:2px;margin-top:-1px;}
 .fps-cross span:nth-child(4){top:50%;right:0;width:14px;height:2px;margin-top:-1px;}
-/* Gun sits dead centre and upright, so the barrel axis runs straight through the
-   crosshair and target at any panel width. The flash and tracer are CHILDREN of
-   the gun, pinned to the barrel tip — that way the shot always leaves the muzzle
-   and follows the gun's recoil, instead of firing from a fixed point in mid-air. */
-.fps-gun{position:absolute;left:50%;bottom:-6px;width:54px;height:88px;margin-left:-27px;
+/* The turret is the part that rotates to aim (left/centre/right); it owns
+   the position + pivot the old .fps-gun rule used to have. .fps-gun fills
+   the turret exactly and only ever recoils on its own transform, so the
+   two motions compose instead of overwriting each other. Flash and tracer
+   stay children of the gun, pinned to the barrel tip, so the shot leaves
+   the muzzle and follows wherever the turret is currently aimed. */
+.fps-turret{position:absolute;left:50%;bottom:-6px;width:54px;height:88px;margin-left:-27px;
+  transform-origin:center bottom;}
+.fps-gun{position:absolute;inset:0;
   background:linear-gradient(160deg,#3a3f47,#191c21);border:1px solid #4a5058;
   border-radius:8px 8px 2px 2px;transform-origin:center bottom;}
 .fps-gun::after{content:'';position:absolute;left:50%;top:-20px;width:14px;height:26px;margin-left:-7px;
   background:linear-gradient(180deg,#2b2f35,#191c21);border:1px solid #4a5058;border-radius:2px;}
 .fps-flash{position:absolute;left:50%;top:-32px;width:26px;height:26px;margin-left:-13px;opacity:0;
   background:radial-gradient(circle,#FFE9A8 0%,#FF9800 45%,transparent 70%);}
-/* tracer — muzzle up the barrel axis toward the crosshair */
+/* tracer — muzzle up the barrel axis; rotates with the turret, so it points
+   wherever the gun is currently aimed. */
 .fps-tracer{position:absolute;left:50%;bottom:100%;margin:0 0 20px -1px;width:2px;height:40px;opacity:0;
   background:linear-gradient(180deg,transparent,rgba(255,233,168,.95));
   box-shadow:0 0 7px rgba(255,200,120,.85);}
 .fps-hud{position:absolute;left:18px;bottom:16px;font-family:var(--f-mono);font-size:.62rem;
   letter-spacing:.14em;text-transform:uppercase;color:rgba(111,211,232,.75);}
 .fps-hud b{color:var(--cyan);font-weight:600;font-size:1.15rem;font-variant-numeric:tabular-nums;}
-.fps-view.play .fps-cross{animation:fpsSway 2.6s ease-in-out infinite;}
-.fps-view.play .fps-gun{animation:fpsRecoil 2.6s ease-in-out infinite;}
-.fps-view.play .fps-flash{animation:fpsFlash 2.6s ease-in-out infinite;}
-.fps-view.play .fps-tracer{animation:fpsTracer 2.6s ease-in-out infinite;}
-.fps-view.play .fps-hit{animation:fpsHit 2.6s ease-in-out infinite;}
-.fps-view.play .fps-hud b{animation:fpsAmmo 2.6s ease-in-out infinite;}
-.fps-view.play .fps-enemy{animation:enemyShot 2.6s ease-in-out infinite;}
+.fps-view.play .fps-cross{animation:fpsCrossAim 7.8s ease-in-out infinite;}
+.fps-view.play .fps-turret{animation:fpsAim 7.8s ease-in-out infinite;}
+.fps-view.play .fps-gun{animation:fpsRecoil 7.8s ease-in-out infinite;}
+.fps-view.play .fps-flash{animation:fpsFlash 7.8s ease-in-out infinite;}
+.fps-view.play .fps-tracer{animation:fpsTracer 7.8s ease-in-out infinite;}
+.fps-view.play .fps-hit-center{animation:fpsHitCenter 7.8s ease-in-out infinite;}
+.fps-view.play .fps-hit-left{animation:fpsHitLeft 7.8s ease-in-out infinite;}
+.fps-view.play .fps-hit-right{animation:fpsHitRight 7.8s ease-in-out infinite;}
+.fps-view.play .fps-target{animation:targetShot 7.8s ease-in-out infinite;}
+.fps-view.play .fps-enemy.left{animation:enemyShotLeft 7.8s ease-in-out infinite;}
+.fps-view.play .fps-enemy.right{animation:enemyShotRight 7.8s ease-in-out infinite;}
+.fps-view.play .fps-hud b{animation:fpsAmmo 7.8s ease-in-out infinite;}
 
 /* Mobile racer — Games2Win zone */
 @keyframes roadRush{from{background-position:0 0}to{background-position:0 120px}}
@@ -736,9 +799,11 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
         <div class="fps-enemy left"></div>
         <div class="fps-enemy right"></div>
         <div class="fps-target"></div>
-        <div class="fps-hit"></div>
+        <div class="fps-hit fps-hit-center"></div>
+        <div class="fps-hit fps-hit-left"></div>
+        <div class="fps-hit fps-hit-right"></div>
         <div class="fps-cross"><span></span><span></span><span></span><span></span></div>
-        <div class="fps-gun"><div class="fps-tracer"></div><div class="fps-flash"></div></div>
+        <div class="fps-turret"><div class="fps-gun"><div class="fps-tracer"></div><div class="fps-flash"></div></div></div>
         <div class="fps-hud">Bug hit rate <b>98%</b></div>
       </div>
     </div>
