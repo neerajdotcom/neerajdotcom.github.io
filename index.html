@@ -224,7 +224,10 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 .kanban.play .t7{transition-delay:1.6s}.kanban.play .t8{transition-delay:1.85s}
 
 /* ============ MORPH BAND ============ */
-.morph-band{padding:12vh 0;text-align:left;background:radial-gradient(140% 100% at 50% 0%,rgba(0,0,0,0.3),transparent 70%);}
+/* No background here — same rule as the zones above: a gradient on this box is
+   clipped to it, and the 9vh padding is empty, so it renders as a bare dark
+   rectangle floating above the rule. The band is just the two rules + label. */
+.morph-band{padding:9vh 0;text-align:left;}
 .morph-band .mb-inner{border-top:2px solid var(--line);border-bottom:2px solid var(--line);
   padding:36px 0;display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
 .morph-band .mline{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.2em;
@@ -273,8 +276,9 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
 /* FPS shooter visualization */
 /* FPS shooter — Ubisoft AAA zone */
 @keyframes fpsSway{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-54%)}}
-@keyframes fpsRecoil{0%,88%,100%{transform:rotate(-20deg)}92%{transform:rotate(-20deg) translateY(8px) scaleY(0.96)}}
+@keyframes fpsRecoil{0%,88%,100%{transform:none}92%{transform:translateY(9px) scaleY(.97)}}
 @keyframes fpsFlash{0%,90%,100%{opacity:0}92%{opacity:1}}
+@keyframes fpsTracer{0%,90%{opacity:0}92%{opacity:.95}95%,100%{opacity:0}}
 @keyframes fpsHit{0%,90%{opacity:0;transform:scale(.4)}94%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.5)}}
 @keyframes enemyShot{0%,90%{opacity:.6}92%{opacity:.2}100%{opacity:.6}}
 @keyframes fpsAmmo{0%,89%{opacity:1}91%{opacity:.25}100%{opacity:1}}
@@ -285,31 +289,40 @@ header.bar{position:fixed;top:0;left:var(--rail);right:0;z-index:55;
              repeating-linear-gradient(180deg,rgba(111,211,232,.07) 0 1px,transparent 1px 46px);}
 .fps-enemy{position:absolute;width:50px;height:80px;background:linear-gradient(90deg,#2d5a6f,#1a3a4a);border:2px solid rgba(111,211,232,.7);border-radius:4px 4px 8px 8px;opacity:.85;transition:opacity .2s;box-shadow:0 0 12px rgba(111,211,232,.3);}
 .fps-enemy::before{content:'';position:absolute;top:8px;left:50%;width:20px;height:20px;margin-left:-10px;border:2px solid rgba(111,211,232,.8);border-radius:50%;box-shadow:inset 0 0 6px rgba(111,211,232,.4);}
-.fps-enemy.left{left:12%;top:50%;transform:translateY(-50%);}
-.fps-enemy.right{right:12%;top:50%;transform:translateY(-50%);}
-.fps-target{position:absolute;left:50%;top:40%;width:40px;height:70px;margin-left:-20px;
+.fps-enemy.left{left:12%;top:38%;transform:translateY(-50%);}
+.fps-enemy.right{right:12%;top:38%;transform:translateY(-50%);}
+.fps-target{position:absolute;left:50%;top:26%;width:40px;height:70px;margin-left:-20px;
   background:linear-gradient(180deg,#2c4a58,#1b3038);border:2px solid rgba(111,211,232,.6);border-radius:4px 4px 0 0;}
-.fps-hit{position:absolute;left:50%;top:48%;width:20px;height:20px;margin:-10px 0 0 -10px;
+.fps-hit{position:absolute;left:50%;top:34%;width:20px;height:20px;margin:-10px 0 0 -10px;
   border:2px solid var(--cyan);border-radius:50%;opacity:0;box-shadow:0 0 8px rgba(111,211,232,.6);}
-.fps-cross{position:absolute;left:50%;top:48%;width:40px;height:40px;transform:translate(-50%,-50%);}
+.fps-cross{position:absolute;left:50%;top:34%;width:40px;height:40px;transform:translate(-50%,-50%);}
 .fps-cross span{position:absolute;background:var(--cyan);box-shadow:0 0 8px rgba(111,211,232,.9);}
 .fps-cross span:nth-child(1){left:50%;top:0;width:2px;height:14px;margin-left:-1px;}
 .fps-cross span:nth-child(2){left:50%;bottom:0;width:2px;height:14px;margin-left:-1px;}
 .fps-cross span:nth-child(3){top:50%;left:0;width:14px;height:2px;margin-top:-1px;}
 .fps-cross span:nth-child(4){top:50%;right:0;width:14px;height:2px;margin-top:-1px;}
-.fps-gun{position:absolute;left:50%;bottom:12px;width:60px;height:100px;margin-left:-30px;
+/* Gun sits dead centre and upright, so the barrel axis runs straight through the
+   crosshair and target at any panel width. The flash and tracer are CHILDREN of
+   the gun, pinned to the barrel tip — that way the shot always leaves the muzzle
+   and follows the gun's recoil, instead of firing from a fixed point in mid-air. */
+.fps-gun{position:absolute;left:50%;bottom:-6px;width:54px;height:88px;margin-left:-27px;
   background:linear-gradient(160deg,#3a3f47,#191c21);border:1px solid #4a5058;
-  border-radius:8px 8px 2px 2px;transform:none;transform-origin:center bottom;}
+  border-radius:8px 8px 2px 2px;transform-origin:center bottom;}
 .fps-gun::after{content:'';position:absolute;left:50%;top:-20px;width:14px;height:26px;margin-left:-7px;
   background:linear-gradient(180deg,#2b2f35,#191c21);border:1px solid #4a5058;border-radius:2px;}
-.fps-flash{position:absolute;left:50%;top:20%;width:24px;height:24px;margin-left:-12px;opacity:0;
+.fps-flash{position:absolute;left:50%;top:-32px;width:26px;height:26px;margin-left:-13px;opacity:0;
   background:radial-gradient(circle,#FFE9A8 0%,#FF9800 45%,transparent 70%);}
+/* tracer — muzzle up the barrel axis toward the crosshair */
+.fps-tracer{position:absolute;left:50%;bottom:100%;margin:0 0 20px -1px;width:2px;height:40px;opacity:0;
+  background:linear-gradient(180deg,transparent,rgba(255,233,168,.95));
+  box-shadow:0 0 7px rgba(255,200,120,.85);}
 .fps-hud{position:absolute;left:18px;bottom:16px;font-family:var(--f-mono);font-size:.62rem;
   letter-spacing:.14em;text-transform:uppercase;color:rgba(111,211,232,.75);}
 .fps-hud b{color:var(--cyan);font-weight:600;font-size:1.15rem;font-variant-numeric:tabular-nums;}
 .fps-view.play .fps-cross{animation:fpsSway 2.6s ease-in-out infinite;}
 .fps-view.play .fps-gun{animation:fpsRecoil 2.6s ease-in-out infinite;}
 .fps-view.play .fps-flash{animation:fpsFlash 2.6s ease-in-out infinite;}
+.fps-view.play .fps-tracer{animation:fpsTracer 2.6s ease-in-out infinite;}
 .fps-view.play .fps-hit{animation:fpsHit 2.6s ease-in-out infinite;}
 .fps-view.play .fps-hud b{animation:fpsAmmo 2.6s ease-in-out infinite;}
 .fps-view.play .fps-enemy{animation:enemyShot 2.6s ease-in-out infinite;}
@@ -725,8 +738,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
         <div class="fps-target"></div>
         <div class="fps-hit"></div>
         <div class="fps-cross"><span></span><span></span><span></span><span></span></div>
-        <div class="fps-flash"></div>
-        <div class="fps-gun"></div>
+        <div class="fps-gun"><div class="fps-tracer"></div><div class="fps-flash"></div></div>
         <div class="fps-hud">Bug hit rate <b>98%</b></div>
       </div>
     </div>
