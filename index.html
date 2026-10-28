@@ -528,7 +528,7 @@ footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--f-mono)
 .proj-intro{margin-bottom:48px;}
 .proj-intro h2{font-size:clamp(1.9rem,4vw,3rem);font-weight:700;letter-spacing:-.015em;margin-bottom:10px;}
 .proj-intro p{max-width:64ch;color:var(--soft);font-size:.98rem;margin-top:14px;}
-.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(400px,100%),1fr));gap:1px;
   background:var(--line);border:1px solid var(--line);}
 .pcard{background:var(--panel);padding:26px 22px;text-decoration:none;color:inherit;
   position:relative;transition:background .25s;display:flex;flex-direction:column;min-height:200px;}
@@ -543,6 +543,10 @@ footer{border-top:1px solid var(--line);padding:26px 0;font-family:var(--f-mono)
   font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);
   text-decoration:none;margin-top:16px;transition:gap .2s;position:relative;z-index:2;}
 .pcard:hover .pc-link{gap:10px;}
+.pcard .pc-shots{display:flex;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:16px;}
+.pcard .pc-shots img{display:block;width:100%;height:108px;object-fit:cover;object-position:top center;filter:saturate(.92) brightness(.96);}
+.pcard .pc-shots img.wide{flex:1.6;object-position:center 30%;}
+.pcard .pc-shots img.tall{flex:1;object-position:center 85%;}
 
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
@@ -959,24 +963,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offse
       <span class="pc-tag">Game · WIP</span>
       <h3>Shiplyp: Last Mile</h3>
       <p>A 3D courier driving game, browser and Android — on-screen touch controls, haptics, and WebView optimisations (cached assets, precompiled shaders). Built the monetisation layer (rewarded + capped interstitials across GameDistribution, CrazyGames, Poki) and the retention loop (wallet, vehicle unlocks, daily check-ins, delivery streaks). Own art direction, vehicle roster and core gameplay loop end to end.</p>
+      <div class="pc-shots">
+        <img class="wide" src="img/shiplyp-desktop.jpg" alt="Shiplyp gameplay in the browser — delivery HUD, road radar and live 3D environment" loading="lazy" width="960" height="600">
+        <img class="tall" src="img/shiplyp-mobile.jpg" alt="Shiplyp on mobile — on-screen touch steer, pedal and drop controls" loading="lazy" width="414" height="896">
+      </div>
       <div class="pc-meta">
         <span>Three.js</span>
         <span>Blender</span>
         <span>Browser · Android</span>
       </div>
       <span class="pc-link">Play it ↗</span>
-    </a>
-
-    <a href="https://github.com/neerajdotcom/neerajdotcom.github.io" target="_blank" rel="noopener" class="pcard rv d1">
-      <span class="pc-tag">Portfolio</span>
-      <h3>The Morph Run</h3>
-      <p>This portfolio itself — a single-file, no-framework HTML page that tells my career as one continuous run across three game-industry zones. Built to ship in one pass.</p>
-      <div class="pc-meta">
-        <span>Vanilla HTML/CSS</span>
-        <span>GitHub Pages</span>
-        <span>Public</span>
-      </div>
-      <span class="pc-link">View repo ↗</span>
     </a>
   </div>
 </section>
